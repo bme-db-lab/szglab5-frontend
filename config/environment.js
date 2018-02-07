@@ -34,6 +34,7 @@ module.exports = function(environment) {
   };
   ENV['ember-simple-auth-token'] = {
     serverTokenEndpoint: ENV.backendUrl + '/auth/login',
+    serverTokenShibbolethEndpoint: ENV.backendUrl + '/api/auth/loginshibboleth',
     identificationField: 'loginName',
     passwordField: 'password',
     tokenPropertyName: 'token',

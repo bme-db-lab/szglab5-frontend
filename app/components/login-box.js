@@ -40,7 +40,12 @@ export default Ember.Component.extend({
       return false;
     },
     loginBMERedirect() {
-      alert('This has not been implemented yet.');
+      var currentWebsite = window.location.origin;
+      var shibboleth = '/Shibboleth.sso/Login';
+      var target = currentWebsite + '/#/login-shibboleth';
+      var shibbolethUrl = currentWebsite + shibboleth + "?target=" + encodeURIComponent(target);
+
+      window.location.replace(shibbolethUrl);
       return false;
     }
   }

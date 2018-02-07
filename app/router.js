@@ -23,6 +23,7 @@ Router.map(function() {
   this.route('permission-denied');
   this.route('news');
   this.route('event-templates');
+  this.route('login-shibboleth');
 });
 
 export default Router;

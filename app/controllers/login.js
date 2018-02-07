@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  queryParams: ['redirect'],
+  queryParams: ['redirect', 'errorMessage'],
   redirect: null,
+  errorMessage: "",
   session: Ember.inject.service('session'),
   redirectChanged: Ember.computed('redirect', function () {
     if (this.get('session').get('isAuthenticated')) {

@@ -16,9 +16,6 @@ export default Base.extend({
       }
     }).then((response) => {
       console.log(response);
-    }).catch(function(error){
-        console.log(error);
-        this.transitionTo('login', { queryParams: { errorMessage: error['errors']['title'] }});
     });
   }
 });

@@ -14,6 +14,11 @@
 
   <div class="bottom">
     <button type="button" name="button" {{action 'loginBMERedirect'}}>Login using my Edu ID</button>
+    {{#if errorShibboleth}}
+    <div class="error-box">
+      {{errorShibboleth}}
+    </div>
+    {{/if}}
   </div>
 
 </div>

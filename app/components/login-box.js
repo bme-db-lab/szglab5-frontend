@@ -12,11 +12,13 @@ export default Ember.Component.extend({
   actions: {
     removeError() {
       this.set('hasError', false);
+      this.set('errorShibboleth', '');
     },
     login() {
       var credentials = this.getProperties('username', 'password'), authenticator = config['ember-simple-auth'].authenticator;
 
       this.set('hasError', false);
+      this.set('errorShibboleth', '');
       if (credentials.username.trim() === "" || credentials.password.trim() === "") {
         this.set('hasError', true);
         this.set('error', "Üres felhasználó/jelszó mező.");

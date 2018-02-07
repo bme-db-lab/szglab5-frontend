@@ -6,6 +6,8 @@ export default Ember.Route.extend(ErrorRouteMixin,  {
   session: Ember.inject.service('session'),
   beforeModel() {
     this._super(...arguments);
-    var session = this.get('session').authenticate('authenticator:shibboleth');
+    var session = this.get('session').authenticate('authenticator:shibboleth').catch((e) => {
+        this.transitionTo('login', { queryParams: { errorMessage: "Shibboleth error: " + e['errors'][0]['title'] }});
+    });
   }
 });

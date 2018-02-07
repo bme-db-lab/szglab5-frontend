@@ -1,5 +1,5 @@
 {{#if errorMessage}}
-  {{login-box goToSettings=(action 'goToSettings') redirect=redirect error=errorMessage hasError=true}}
+  {{login-box goToSettings=(action 'goToSettings') redirect=redirect errorShibboleth=errorMessage}}
 {{else}}
   {{login-box goToSettings=(action 'goToSettings') redirect=redirect }}
 {{/if}}

@@ -171,7 +171,7 @@
               <div class="text">Véglegesítve. Amennyiben ezen változtatni szeretnél, kérd egy admin segítségét!</div>
             {{else}}
               <button type="button" {{action 'save'}}>Javítás véglegesítése</button>
-              <button type="button" {{action 'save' false}}>Javítás mentése</button>
+              <button class="button-with-distance" type="button" {{action 'save' false}}>Javítás mentése</button>
             {{/if}}
             {{#if success}}
               <div class="success-box">

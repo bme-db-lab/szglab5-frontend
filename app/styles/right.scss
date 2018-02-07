@@ -16,6 +16,10 @@
 
         button {
           margin-left: -1%;
+
+          &.button-with-distance {
+            margin-left: 1%;
+          }
         }
 
         a:not(.akep) {
@@ -51,7 +55,7 @@
             }
 
           }
-          
+
           .akep {
             margin-left: 1%;
           }

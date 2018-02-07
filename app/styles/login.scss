@@ -13,13 +13,15 @@
   & > * {
     padding: 0.5em;
   }
-  .top {
+  .bottom {
     margin-bottom: 1em;
+    border-top: 1px solid lightgray;
     button {
       margin: 0;
     }
   }
-  .bottom {
+
+  .top {
     input {
       margin: 0.5em auto;
       min-width: 200px;

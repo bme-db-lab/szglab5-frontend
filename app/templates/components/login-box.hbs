@@ -1,8 +1,5 @@
 <div class="login">
-  <!--<div class="top">
-    <button type="button" name="button" {{action 'loginBMERedirect'}}>Login with BME account</button>
-  </div>-->
-  <form class="bottom {{if hasError 'error'}}">
+  <form class="top {{if hasError 'error'}}">
     {{#auto-focus}}
       {{input type="text" value=username placeholder="username" enter='removeError' autofocus="autofocus" }}
     {{/auto-focus}}
@@ -14,5 +11,9 @@
     </div>
     {{/if}}
   </form>
+
+  <div class="bottom">
+    <button type="button" name="button" {{action 'loginBMERedirect'}}>Login using my Edu ID</button>
+  </div>
 
 </div>

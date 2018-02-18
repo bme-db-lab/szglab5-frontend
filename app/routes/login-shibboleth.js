@@ -7,7 +7,12 @@ export default Ember.Route.extend(ErrorRouteMixin,  {
   beforeModel() {
     this._super(...arguments);
     var session = this.get('session').authenticate('authenticator:shibboleth').then(()=>{
-      this.transitionTo('settings');
+      if (this.get('redirect') === null) {
+        this.sendAction('goToSettings');
+      }
+      else {
+        window.location.replace(`${this.get('redirect')}?token=${this.get('session.data.authenticated.token')}`);
+      }
     }).catch((e) => {
         if ((e['errors'] !== undefined) && (e['errors'].length > 0) && (e['errors'][0]['title'] !== undefined)) {
           this.transitionTo('login', { queryParams: { errorMessage: "Shibboleth login error: " + e['errors'][0]['title'] }});

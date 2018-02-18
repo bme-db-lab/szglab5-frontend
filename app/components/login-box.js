@@ -48,7 +48,6 @@ export default Ember.Component.extend({
 
       if (this.get('redirect') !== null) {
         target += "?redirect="  + encodeURIComponent(this.get('redirect'));
-        console.log("login ", target);
        }
 
       var shibbolethUrl = currentWebsite + shibboleth + "?target=" + encodeURIComponent(target);

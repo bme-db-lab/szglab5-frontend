@@ -13,7 +13,7 @@ export default Ember.Route.extend(ErrorRouteMixin,  {
         this.sendAction('goToSettings');
       }
       else {
-        window.location.replace(`${decodeURIComponent(redirect)}&token=${this.get('session.data.authenticated.token')}`);
+        window.location.replace(`${redirect}&token=${this.get('session.data.authenticated.token')}`);
       }
     }).catch((e) => {
         if ((e['errors'] !== undefined) && (e['errors'].length > 0) && (e['errors'][0]['title'] !== undefined)) {

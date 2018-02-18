@@ -13,7 +13,9 @@ export default Ember.Route.extend(ErrorRouteMixin,  {
         this.sendAction('goToSettings');
       }
       else {
-        window.location.replace(`${redirect}&token=${this.get('session.data.authenticated.token')}`);
+        var url = `${redirect}&token=${this.get('session.data.authenticated.token')}`;
+        console.log('login shibboleth ', url);
+        window.location.replace(url);
       }
     }).catch((e) => {
         if ((e['errors'] !== undefined) && (e['errors'].length > 0) && (e['errors'][0]['title'] !== undefined)) {

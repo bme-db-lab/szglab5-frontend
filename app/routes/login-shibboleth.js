@@ -10,7 +10,7 @@ export default Ember.Route.extend(ErrorRouteMixin,  {
     var redirect = this.paramsFor('login-shibboleth')['redirect'];
     var session = this.get('session').authenticate('authenticator:shibboleth').then(()=>{
       if (redirect === null) {
-        this.sendAction('goToSettings');
+        this.transitionTo('settings');
       }
       else {
         var url = `${redirect}?token=${this.get('session.data.authenticated.token')}`;

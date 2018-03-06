@@ -14,7 +14,14 @@ export default Base.extend({
 
     return new Ember.RSVP.Promise((resolve, reject) => {
       if (!Ember.isEmpty(dataObject.get('token'))) {
-        resolve(data);
+        this.get('ajax').request(`${config.backendUrl}/auth/verify-token`, {
+          method: 'POST',
+          data: { token: dataObject.get('token') }
+        }).then((response) => {
+          resolve(data);
+        }).catch(() => {
+          reject();
+        })
       } else {
         reject();
       }

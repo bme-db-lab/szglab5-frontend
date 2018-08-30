@@ -27,7 +27,12 @@ export default Ember.Mixin.create({
         key: 'notification',
         value: "Hírek szerkesztése",
         icon: 'bell-o'
+      }, {
+        key: 'change-group',
+        value: "Csoport csere",
+        icon: 'dashboard'
       }, /*{
+      }, {
         key: 'semester',
         value: "Semesters",
         icon: 'dashboard'
@@ -54,6 +59,10 @@ export default Ember.Mixin.create({
         key: 'entry-test',
         value: "Beugrókérdések",
         icon: 'pencil'
+      }, {
+        key: 'change-group',
+        value: "Csoport csere",
+        icon: 'dashboard'
       }
     ],
     CORRECTOR: [

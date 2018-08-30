@@ -2,7 +2,7 @@ import Ember from 'ember';
 import config from '../config/environment';
 
 export default Ember.Controller.extend({
-  neptun: "Neptun5",
+  neptun: "",
   error: "",
   student: null,
   session: Ember.inject.service('session'),
@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
   selectedGroup: null,
   resetGrades: false,
 
-  // block the save button if the current new group is the old group
+  // block the save button if the current new group is empty
   // block if the selectedEventTemplate is empty
   blockSaveButton: Ember.computed('selectedGroup', 'selectedEventTemplate', 'student', function() {
     let group = this.get('selectedGroup');
@@ -21,15 +21,16 @@ export default Ember.Controller.extend({
     if (eventTemplate === null || eventTemplate === undefined || group === null || group === undefined) {
       return true;
     }
-
-    // check if the two names match
-    return group.get('name').toLowerCase() === student.studentGroup.toLowerCase();
+    return false;
   }),
 
   actions: {
-
     // search for student by neptun
     searchStudent() {
+      this.set('errorSearch', null);
+      this.set('successSave', null);
+      this.set('errorSave', null);
+
       let url = `${config.backendUrl}/users/neptun/` + this.get('neptun');
 
       Ember.$.ajax({
@@ -49,13 +50,11 @@ export default Ember.Controller.extend({
         // on error delete the student and show error message
         error: (error) => {
           this.set('student', null);
-
           if (error.statusText.toLowerCase() === "not found") {
-            this.set('error', "Nem létező hallgató");
+            this.set('errorSearch', "Nem létező hallgató");
             return;
           }
-
-          this.set('error', error.statusText);
+          this.set('errorSearch', error.statusText);
           return;
         }
       });
@@ -81,9 +80,40 @@ export default Ember.Controller.extend({
 
     // save new group
     saveNewGroup() {
+      this.set('errorSearch', null);
+      this.set('successSave', null);
+      this.set('errorSave', null);
+
+      let json = {
+        "studentNeptun": this.get('student.neptun'),
+        "newStudentGroupId": this.get('selectedGroup.id'),
+        "eventTemplateId": this.get('selectedEventTemplate.eventTemplateId'),
+        "resetGrades": this.get('resetGrades')
+      };
+
+      Ember.$.ajax({
+        type: "POST",
+        url: `${config.backendUrl}/users-change-group`,
+        data: JSON.stringify(json),
+        beforeSend: (xhr) => {
+          xhr.setRequestHeader('Authorization', `Bearer ${this.get('session.data.authenticated.token')}`);
+        },
+        contentType: "application/json; charset=utf-8",
+        crossDomain: true,
+        dataType: "json",
+        // on success save the new student
+        success: (response) => {
+          this.set('successSave', "Sikeres mentés");
+          return;
+        },
+        // on error delete the student and show error message
+        error: (error) => {
+          this.set('successSave', null);
+          this.set('errorSave', "Sikertelen mentés");
+          return;
+        }
+      });
       return;
     }
   }
-
-
 });

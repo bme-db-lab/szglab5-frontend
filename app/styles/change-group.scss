@@ -9,6 +9,14 @@
       margin-top: 0;
     }
 
+    &--error {
+      color: red;
+    }
+
+    &--save {
+      color: green;
+    }
+
     &--search {
       button {
         margin-left: 2%;

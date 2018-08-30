@@ -6,9 +6,9 @@
       <button type="button" class="button" disabled= {{eq neptun.length 0}} {{action 'searchStudent'}}> Keresés</button>
     </div>
 
-    {{#if error}}
+    {{#if errorSearch}}
       <div class="block block--error">
-        <div>{{error}}</div>
+        <div>{{errorSearch}}</div>
       </div>
     {{/if}}
 
@@ -69,6 +69,17 @@
         <div class="block">
           <button type="button" class="button" disabled={{blockSaveButton}} {{action 'saveNewGroup'}}> Mentés</button>
         </div>
+      </div>
+    {{/if}}
+
+    {{#if errorSave}}
+      <div class="block block--error">
+        <div>{{errorSave}}</div>
+      </div>
+    {{/if}}
+    {{#if successSave}}
+      <div class="block block--save">
+        <div>{{successSave}}</div>
       </div>
     {{/if}}
   </div>

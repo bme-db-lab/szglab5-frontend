@@ -1,0 +1,48 @@
+.change-group {
+  display: flex;
+
+  .block {
+    display: flex;
+    margin-top: 2%;
+
+    button {
+      margin-top: 0;
+    }
+
+    &--search {
+      button {
+        margin-left: 2%;
+      }
+    }
+
+    &--student {
+      max-width: 25%;
+      text-transform: capitalize;
+
+      .sub-label {
+        flex-grow: 1;
+      }
+    }
+
+    &--form {
+      &-group {
+        .label {
+          flex-grow: 1;
+        }
+
+        &.max-25 {
+          max-width: 25%;
+        }
+      }
+
+      .ember-power-select-trigger {
+        min-width: 15%;
+        margin-right: 3%;
+      }
+    }
+  }
+}
+
+.flex-col {
+  flex-direction: column;
+}

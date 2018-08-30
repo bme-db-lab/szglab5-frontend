@@ -1,1 +1,75 @@
-{{outlet}}
+<div class="content dashboard">
+  {{left-menu title="Csoport csere" currentView=null subMenu=null}}
+  <div class="right change-group flex-col">
+    <div class="block block--search">
+      {{input type="type"placeholder="Neptun" value=neptun }}
+      <button type="button" class="button" disabled= {{eq neptun.length 0}} {{action 'searchStudent'}}> Keresés</button>
+    </div>
+
+    {{#if error}}
+      <div class="block block--error">
+        <div>{{error}}</div>
+      </div>
+    {{/if}}
+
+    {{#if student}}
+      <div class="block block--student flex-col">
+        <div class="normal-label">Hallgató adatai</div>
+        <div class="block">
+          <div class="sub-label">Név:</div>
+          <div class="text">{{student.displayName}}</div>
+        </div>
+        <div class="block">
+          <div class="sub-label">Neptun: </div>
+          <div class="text">{{student.neptun}}</div>
+        </div>
+        <div class="block">
+          <div class="sub-label">Csoport: </div>
+          <div class="text">{{student.studentGroup}}</div>
+        </div>
+      </div>
+      <div class="block block--form flex-col">
+        <div class="normal-label">Új csoport beállítása</div>
+        <div class="block block--form-group">
+          {{#power-select
+            selected=selectedEventTemplate
+            options=model.eventTemplates
+            searchField="exerciseCategoryType"
+            onchange=(action 'selectTemplate')
+            placeholder="Labor"
+            as |event|
+          }}
+            {{event.exerciseCategoryType}}
+          {{/power-select}}
+
+          {{#power-select
+            selected=selectedGroup
+            options=model.studentGroups
+            searchField="name"
+            onchange=(action 'selectGroup')
+            placeholder="Új csoport"
+            as |group|
+          }}
+            {{group.name}}
+          {{/power-select}}
+        </div>
+
+        <div class="block block--form-group max-25">
+          <div class="text label">Meglévő jegy</div>
+          <button type="button" class="btn--toggle {{if resetGrades 'active'}}" {{action 'toggleResetGrades'}}>
+            {{#if resetGrades}}
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              {{else}}
+              <i class="fa fa-square-o" aria-hidden="true"></i>
+            {{/if}}
+            törlés
+          </button>
+        </div>
+
+        <div class="block">
+          <button type="button" class="button" disabled={{blockSaveButton}} {{action 'saveNewGroup'}}> Mentés</button>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>

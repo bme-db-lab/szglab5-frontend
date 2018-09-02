@@ -43,6 +43,11 @@ export default Ember.Controller.extend({
     searchStudent() {
       this.resetValues(true);
 
+      if(this.get('neptun').length === 0) {
+        return;
+      }
+
+
       let url = `${config.backendUrl}/users/neptun/` + this.get('neptun');
 
       Ember.$.ajax({

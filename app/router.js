@@ -24,6 +24,7 @@ Router.map(function() {
   this.route('news');
   this.route('event-templates');
   this.route('login-shibboleth');
+  this.route('change-group');
 });
 
 export default Router;

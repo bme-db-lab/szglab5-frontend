@@ -27,4 +27,5 @@ export default DS.Model.extend({
   Roles: DS.hasMany('role'),
   Event: DS.hasMany('event', {inverse: 'Demonstrator'}), // TODO: maybe useless
   ExerciseTypes: DS.hasMany('exerciseType', {inverse: 'Users'}),
+  StudentGroup: DS.belongsTo('studentGroup', {inverse: 'User'})
 });

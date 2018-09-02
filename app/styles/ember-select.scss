@@ -24,18 +24,10 @@ span.ember-power-select-selected-item {
   }
 }
 
-// .ember-power-select-status-icon {
-//   position: relative;
-//   right: 10px;
-//   border: none;
-//   float: right;
-//
-//   &:after {
-//     font-family: 'FontAwesome';
-//     content: "\f078";
-//     color: black;
-//   }
-// }
+.ember-power-select-status-icon {
+  color: black !important;
+  border-color: black transparent transparent transparent !important;
+}
 
 .ember-power-select-placeholder {
   font-style: italic;

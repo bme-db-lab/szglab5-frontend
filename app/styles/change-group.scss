@@ -17,6 +17,13 @@
       color: green;
     }
 
+    &--actions {
+      display: flex;
+      button {
+        margin-right: 2%;
+      }
+    }
+
     &--search {
       button {
         margin-left: 2%;
@@ -34,7 +41,7 @@
 
     &--form {
       &-group {
-        .label {
+        .sub-label {
           flex-grow: 1;
         }
 

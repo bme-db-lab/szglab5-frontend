@@ -10,6 +10,20 @@ export default Ember.Controller.extend({
   selectedGroup: null,
   resetGrades: false,
 
+  resetValues(resetStudent) {
+    this.set('errorSearch', null);
+    this.set('successSave', null);
+    this.set('errorSave', null);
+
+    this.set('selectedEventTemplate', null);
+    this.set('selectedGroup', null);
+    this.set('resetGrades', false);
+
+    if (resetStudent) {
+      this.set('student', null);
+    }
+  },
+
   // block the save button if the current new group is empty
   // block if the selectedEventTemplate is empty
   blockSaveButton: Ember.computed('selectedGroup', 'selectedEventTemplate', 'student', function() {
@@ -27,9 +41,7 @@ export default Ember.Controller.extend({
   actions: {
     // search for student by neptun
     searchStudent() {
-      this.set('errorSearch', null);
-      this.set('successSave', null);
-      this.set('errorSave', null);
+      this.resetValues(true);
 
       let url = `${config.backendUrl}/users/neptun/` + this.get('neptun');
 
@@ -58,6 +70,12 @@ export default Ember.Controller.extend({
           return;
         }
       });
+    },
+
+    // resetEverything
+    resetButton() {
+      this.resetValues();
+      return;
     },
 
     // select new template

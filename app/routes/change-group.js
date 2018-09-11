@@ -1,13 +1,11 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-import AdminAuthenticatedRouteMixin from '../mixins/admin-authenticated-route';
+import DemonstatorOrAdminAuthenticatedRouteMixin from '../mixins/demonstrator-or-admin-authenticated';
 import ErrorRouteMixin from '../mixins/error-route';
 import config from '../config/environment';
 
-import DemonstratorAuthenticatedRouteMixin from '../mixins/demonstrator-authenticated-route';
-
-export default Ember.Route.extend(AuthenticatedRouteMixin,  DemonstratorAuthenticatedRouteMixin, AdminAuthenticatedRouteMixin, ErrorRouteMixin, {
+export default Ember.Route.extend(AuthenticatedRouteMixin, DemonstatorOrAdminAuthenticatedRouteMixin, ErrorRouteMixin, {
   model() {
     let eventTemplates =  Ember.$.ajax({
       type: "GET",

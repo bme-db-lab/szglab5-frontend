@@ -12,4 +12,4 @@
   <span class="label">Határidő</span> {{dateformat (await eventDeadline)}}
 </div>
 
-{{table-component rowIndecies=rowIndecies header=header body=(await events) addClass='demonstrator-table' onClickRowAction='evaluateEvent' clickable=true evaluateEvent=(action "evaluateEvent")}}
+{{table-component rowIndecies=rowIndecies header=header body=(await sortedEvents) addClass='demonstrator-table' onClickRowAction='evaluateEvent' clickable=true evaluateEvent=(action "evaluateEvent")}}

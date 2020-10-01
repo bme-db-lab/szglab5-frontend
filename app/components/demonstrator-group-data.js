@@ -9,11 +9,11 @@ export default Ember.Component.extend({
   classNames: ['demonstrator-group'],
 
   header: ['Név', 'Neptun', "Csoport", 'Feladattípus', 'Feltöltés ideje', 'Beugró érdemjegy', 'Beadandó érdemjegy', 'Labor érdemjegy', 'Pót'],
-  rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'StudentRegistration.neptunCourseCode', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
+  rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'CourseCode', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
 
   eventGroup: Ember.computed('events', function(){
     return this.get('events').then (function(events){
-      return events.get('firstObject.StudentRegistration.neptunCourseCode');
+      return events.get('firstObject.CourseCode');
     });
   }),
   eventPlace: Ember.computed('events', function(){

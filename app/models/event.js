@@ -24,6 +24,9 @@ export default DS.Model.extend({
       });
     });
   }),
+  CourseCode: Ember.computed('StudentRegistration', 'StudentRegistration.neptunCourseCode', function() {
+    return this.get('StudentRegistration.neptunCourseCode');
+  }),
   correctableDeliverables: Ember.computed('Deliverables', 'Deliverables.[]', function() {
     return this.get('Deliverables').filter(x => x.get('DeliverableTemplate.type') === 'FILE');
   }),

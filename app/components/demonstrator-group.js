@@ -17,17 +17,16 @@ export default Ember.Component.extend({
           }
         }).then(events => {
           let sortedEventsByCourseCode = {}
-          events = events
-            .map(event => {
-              event.set('formattedDate', dateformat([event.get('date')]));
+          events.map(event => {
+            event.set('formattedDate', dateformat([event.get('date')]));
 
-              const courseCode = event.get('CourseCode');
-              if(!Object.keys(sortedEventsByCourseCode).includes(courseCode)) {
-                sortedEventsByCourseCode[courseCode] = []
-              }
-              sortedEventsByCourseCode[courseCode].push(event)
-              return event;
-            });
+            const courseCode = event.get('CourseCode');
+            if(!Object.keys(sortedEventsByCourseCode).includes(courseCode)) {
+              sortedEventsByCourseCode[courseCode] = []
+            }
+            sortedEventsByCourseCode[courseCode].push(event)
+            return event;
+          });
 
           resolve(sortedEventsByCourseCode);
         }, err => {

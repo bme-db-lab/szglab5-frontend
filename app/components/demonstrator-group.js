@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   session: Ember.inject.service('session'),
   classNames: ['demonstrator-group'],
-  header: ['Név', 'Neptun', 'Feladattípus', 'Feltöltés ideje', 'Beugró érdemjegy', 'Beadandó érdemjegy', 'Labor érdemjegy', 'Pót'],
-  rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
+  header: ['Név', 'Neptun', "Csoport", 'Feladattípus', 'Feltöltés ideje', 'Beugró érdemjegy', 'Beadandó érdemjegy', 'Labor érdemjegy', 'Pót'],
+    rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'StudentRegistration.neptunCourseCode', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
   body: Ember.computed('currentEventTemplate', function () {
     return new RSVP.Promise((resolve, reject) => {
       if (this.get('currentEventTemplate.id')) {

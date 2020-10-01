@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   classNames: ['demonstrator-group'],
 
-  events: Ember.computed('currentEventTemplate', function () {
+  sortedEventsByCourseCode: Ember.computed('currentEventTemplate', function () {
     return new RSVP.Promise((resolve, reject) => {
       if (this.get('currentEventTemplate.id')) {
         this.get('store').query('event', {
@@ -16,19 +16,27 @@ export default Ember.Component.extend({
             eventTemplateId: this.get('currentEventTemplate.id')
           }
         }).then(events => {
-          resolve(events
+          let sortedEventsByCourseCode = {}
+          events = events
             .map(event => {
               event.set('formattedDate', dateformat([event.get('date')]));
+
+              const courseCode = event.get('CourseCode');
+              if(!Object.keys(sortedEventsByCourseCode).includes(courseCode)) {
+                sortedEventsByCourseCode[courseCode] = []
+              }
+              sortedEventsByCourseCode[courseCode].push(event)
               return event;
-            })
-          );
+            });
+
+          resolve(sortedEventsByCourseCode);
         }, err => {
           console.error(err);
           reject(err);
         });
       }
       else {
-        resolve([]);
+        resolve({});
       }
     });
   }),

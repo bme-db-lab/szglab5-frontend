@@ -4,4 +4,6 @@
 <a class="button no-margin-top" {{action 'generateSheet'}}>generálás</a>
 <a class="button no-margin-top no-margin-left" {{action 'generateSheetSupplementary'}}>pót generálás</a>
 
-{{demonstrator-group-data currentEventTemplate=currentEventTemplate events=events evaluateEvent=(action 'evaluateEvent')}}
+{{#each-in (await sortedEventsByCourseCode) as |courseCode events|}}
+  {{demonstrator-group-data currentEventTemplate=currentEventTemplate events=(await events) evaluateEvent=(action 'evaluateEvent')}}
+{{/each-in}}

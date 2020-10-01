@@ -11,5 +11,5 @@
   Feladatsor
 </div>
 <a class="button" {{action 'generateSheet'}}>generálás</a>
-<a class="button" {{action 'generateSheetSupplementary'}}>generálás pót</a>
+<a class="button no-margin-left" {{action 'generateSheetSupplementary'}}>generálás pót</a>
 {{table-component rowIndecies=rowIndecies header=header body=(await body) addClass='demonstrator-table' onClickRowAction='evaluateEvent' clickable=true evaluateEvent=(action "evaluateEvent")}}

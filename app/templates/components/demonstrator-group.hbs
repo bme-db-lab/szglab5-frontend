@@ -1,15 +1,1 @@
-<div class="text">
-  <span class="label">Labor helyszíne</span> {{await currentEventTemplate.eventPlace}}
-</div>
-<div class="text">
-  <span class="label">Labor időpontja</span> {{dateformat (await currentEventTemplate.eventDate)}}
-</div>
-<div class="text">
-  <span class="label">Határidő</span> {{dateformat (await currentEventTemplate.eventDeadline)}}
-</div>
-<div class="text label">
-  Feladatsor
-</div>
-<a class="button" {{action 'generateSheet'}}>generálás</a>
-<a class="button no-margin-left" {{action 'generateSheetSupplementary'}}>generálás pót</a>
-{{table-component rowIndecies=rowIndecies header=header body=(await body) addClass='demonstrator-table' onClickRowAction='evaluateEvent' clickable=true evaluateEvent=(action "evaluateEvent")}}
+{{demonstrator-group-data currentEventTemplate=currentEventTemplate evaluateEvent=(action 'evaluateEvent')}}

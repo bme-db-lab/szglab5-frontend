@@ -5,8 +5,8 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   classNames: ['demonstrator-group'],
 
-  header: ['Név', 'Neptun', "Csoport", 'Feladattípus', 'Feltöltés ideje', 'Beugró érdemjegy', 'Beadandó érdemjegy', 'Labor érdemjegy', 'Pót'],
-  rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'CourseCode', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
+  header: ['Név', 'Neptun', 'Feladattípus', 'Feltöltés ideje', 'Beugró érdemjegy', 'Beadandó érdemjegy', 'Labor érdemjegy', 'Pót'],
+  rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
 
   sortedEvents: Ember.computed('events', 'events.[]', function() {
     return this.get('events').sort((lhs, rhs) => {

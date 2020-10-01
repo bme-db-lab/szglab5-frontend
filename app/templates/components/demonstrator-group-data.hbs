@@ -1,14 +1,17 @@
+<hr />
 <div class="text">
-  <span class="label">Labor helyszíne</span> {{await currentEventTemplate.eventPlace}}
+  <span class="label">Csoport</span> {{await eventGroup}}
 </div>
 <div class="text">
-  <span class="label">Labor időpontja</span> {{dateformat (await currentEventTemplate.eventDate)}}
+  <span class="label">Labor helyszíne</span> {{await eventPlace}}
 </div>
 <div class="text">
-  <span class="label">Határidő</span> {{dateformat (await currentEventTemplate.eventDeadline)}}
+  <span class="label">Labor időpontja</span> {{dateformat (await eventDate)}}
 </div>
-<div class="text label">
-  Feladatsor
+<div class="text">
+  <span class="label">Határidő</span> {{dateformat (await eventDeadline)}}
 </div>
 
 {{table-component rowIndecies=rowIndecies header=header body=(await events) addClass='demonstrator-table' onClickRowAction='evaluateEvent' clickable=true evaluateEvent=(action "evaluateEvent")}}
+
+

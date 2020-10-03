@@ -9,10 +9,10 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('evaluator', function() {
     this.route('to-fix', function() {
-      this.route('event', { path: "/event/:id" });
+      this.route('deliverable', { path: "/:id" });
     });
     this.route('booked', function() {
-      this.route('event', { path: "/event/:id" });
+      this.route('deliverable', { path: "/:id" });
     });
   });
   this.route('entry-test');

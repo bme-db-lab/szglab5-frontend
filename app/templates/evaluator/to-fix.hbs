@@ -16,4 +16,5 @@
 {{/if}}
 
 {{table-component header=header body=filteredDeliverablesSelect rowIndecies=rowIndecies clickable=true changeEvent=(action 'changeDeliverable') onClickRowAction='changeEvent'}}
-<a class="button" {{action 'loadFilteredDeliverablesForSelect'}}>Továbbiak betöltése</a>
+
+<button class="with-margin button" {{action 'loadFilteredDeliverables'}}>Továbbiak betöltése</button>

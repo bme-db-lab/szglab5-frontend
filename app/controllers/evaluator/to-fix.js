@@ -70,7 +70,7 @@ export default Ember.Controller.extend({
 
 
         // load deliverables by filter
-        loadFilteredDeliverablesForSelect() {
+        loadFilteredDeliverables() {
           const filter = {
             isFree: true,
             isAttached: true,
@@ -109,15 +109,7 @@ export default Ember.Controller.extend({
         changeDeliverable(deliverable) {
           this.set('success', false);
           this.set('error', '');
-          deliverable.get('Event').then(event => {
-            this.set('selectedEvent', event);
-            this.set('selectedEventUser', deliverable.get('Event.StudentRegistration.User'));
-            this.set('selectedEventDemonstrator', deliverable.get('Event.Demonstrator'));
-            this.set('success', false);
-            this.set('error', '');
-            this.set('selectedDeliverable', deliverable);
-            this.set('selectedDeliverable.gradingCache', this.get('selectedDeliverable.grading'));
-          });
+          this.transitionToRoute("evaluator.to-fix.deliverable", deliverable.get('id'));
           return false;
         },
 
@@ -126,8 +118,8 @@ export default Ember.Controller.extend({
             this.set('page', 0);
             this.set('filteredDeliverablesSelect', []);
             this.set('filteredDeliverables', []);
-            this.actions.loadFilteredDeliverablesForSelect.apply(this);
+            this.actions.loadFilteredDeliverables.apply(this);
             return false;
         }
-      }
+    }
 });

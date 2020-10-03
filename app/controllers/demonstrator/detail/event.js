@@ -5,8 +5,8 @@ export default Ember.Controller.extend({
   classNames: ['evaluation-student'],
 
   actions: {
-    toggleFinalized(obj) {
-      obj.toggleProperty('finalized');
+    toggleFinalized(event) {
+      event.toggleProperty('finalized');
       return false;
     },
 

@@ -25,9 +25,9 @@
             <span class="label">beadandó típusa</span>
             <strong>{{Deliverable.DeliverableTemplate.description}}</strong>
           </div>
-          {{staff-laboratory-upload Deliverable=Deliverable}}
+          {{staff-laboratory/upload Deliverable=Deliverable}}
           {{#if Deliverable.lastSubmittedDate}}
-            {{staff-laboratory-time-change Deliverable=Deliverable}}
+            {{staff-laboratory/time-change Deliverable=Deliverable}}
           {{/if}}
           <div class="definalize-actions">
             <div class="text label">Beadandó érdemjegy feloldása</div>

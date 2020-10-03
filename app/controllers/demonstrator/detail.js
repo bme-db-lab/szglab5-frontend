@@ -63,9 +63,11 @@ export default Ember.Controller.extend({
       this.transitionToRoute("demonstrator.detail.event", this.get('model.id'), event.get('id'));
       return false;
     },
+
     generateSheetSupplementary() {
       return this.download.apply(this, [true]);
     },
+
     generateSheet() {
       return this.download.apply(this);
     }

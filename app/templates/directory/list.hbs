@@ -1,0 +1,16 @@
+<div class="directory-search-fields">
+    <div class="text label">Keresés</div>
+    {{input type="search" value=search placeholder="név, e-mail vagy id" enter="showTable"}}
+
+    <button class="with-margin" {{action 'showTable'}}>Keresés</button>
+</div>
+
+{{#if showTable}}
+    <div class="directory-table">
+        {{table-component header=header body=users rowIndecies=rowIndecies addClass='user-table' openSettings=(action "openSettings") withSettings=true impersonate=(action 'impersonateUser') withImpersonate=true clickable=true onClickRowAction="openSettings"}}
+    </div>
+
+    {{#if showNextPage}}
+        <button class="with-margin" {{action 'nextPage'}}>Továbbiak betöltése</button>
+    {{/if}}
+{{/if}}

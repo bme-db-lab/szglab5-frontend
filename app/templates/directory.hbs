@@ -1,31 +1,9 @@
 <div class="content directory">
-  {{menus/left-menu title="Fehasználók" currentView=currentView goToView=(action 'goToView') subMenu=subMenu}}
+  {{menus/left-menu-routes title="Fehasználók"  subMenu=subMenu}}
 
   <div class="right">
     <div class="directory">
-      {{#if (eq currentView 'list')}}
-        {{#unless showSettings}}
-          <div class="directory-search-fields">
-            <div class="text label">Keresés</div>
-            {{input type="text" value=search placeholder="név, e-mail vagy id" enter="showTable"}}
-
-            <button {{action 'showTable'}}>Keresés</button>
-          </div>
-          {{#if showTable}}
-            <div class="directory-table">
-              {{table-component header=header body=users rowIndecies=rowIndecies addClass='user-table' openSettings=(action "openSettings") withSettings=true impersonate=(action 'impersonateUser') withImpersonate=true clickable=true onClickRowAction="openSettings"}}
-            </div>
-            {{#if showNextPage}}
-              <button {{action 'nextPage'}}>Továbbiak betöltése</button>
-            {{/if}}
-          {{/if}}
-        {{/unless}}
-        {{#if showSettings}}
-          {{directory-settings/user user=user closeSettings=(action "closeSettings") impersonateUser=(action 'impersonateUser' user) model=model}}
-        {{/if}}
-      {{else}}
-        {{new-user model=model user=newUser}}
-      {{/if}}
+      {{outlet}}
     </div>
   </div>
 </div>

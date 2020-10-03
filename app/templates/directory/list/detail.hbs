@@ -5,30 +5,36 @@
         <span class="label">ID</span>
           {{user.id}}
       </div>
+
       <div class="text">
         <span class="label">Név</span>
           {{user.displayName}}
       </div>
+
       <div class="text">
         <span class="label">Felhasználónév</span>
           {{user.loginName}}
       </div>
+
       {{#if user.neptun}}
         <div class="text">
           <span class="label">Neptun</span>
             {{user.neptun}}
         </div>
       {{/if}}
+
       {{#if user.email_official}}
         <div class="text">
           <span class="label">Hivatalos e-mail</span>
           {{user.email_official}}
         </div>
       {{/if}}
+
       <div class="directory-field">
         <div class="text label">Új jelszó</div>
         {{input type="text" value=newPwd placeholder='új jelszó'}}
-        <button {{action 'setNewPwd'}}>Új jelszó beállítása</button>
+        <button class="with-margin" {{action 'setNewPwd'}}>Új jelszó beállítása</button>
+
         {{#if successfullPwd}}
           <div class="success-box">Sikeres mentés</div>
         {{/if}}
@@ -37,40 +43,46 @@
       <div class="directory-field">
         <div class="text label">Új e-mail</div>
         {{input type="email" value=newEmail placeholder='új e-mail'}}
-        <button {{action 'setNewEmail'}}>Új e-mail beállítása</button>
+        <button class="with-margin" {{action 'setNewEmail'}}>Új e-mail beállítása</button>
+
         {{#if successfullEmail}}
           <div class="success-box">Sikeres mentés</div>
         {{/if}}
       </div>
+
       <div class="directory-field">
         <div class="text label">Megszemélyesítés</div>
         <button class="directory-form-button" {{action 'impersonateUser'}}>Felhasználó megszemélyesítése</button>
       </div>
     </div>
+
     <div class="text label">Felhasználói szerepkör</div>
     <div class="toggle-buttons">
-    {{#each model.roles as |role|}}
+      {{#each model.roles as |role|}}
       <button type="button" class="btn--toggle {{if (has-key currentRoles role.name) 'active'}}" {{action 'toggleRole' role}}>
-        {{#if (has-key currentRoles role.name)}}
-          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+          {{#if (has-key currentRoles role.name)}}
+            <i class="fa fa-check-square-o" aria-hidden="true"></i>
           {{else}}
-          <i class="fa fa-square-o" aria-hidden="true"></i>
-        {{/if}}
-        {{role.name}}
-      </button>
-    {{/each}}
+            <i class="fa fa-square-o" aria-hidden="true"></i>
+          {{/if}}
+          {{role.name}}
+        </button>
+      {{/each}}
+    </div>
   </div>
-  </div>
+
   {{#if isEvaluator}}
       {{directory-settings/evaluator user=user model=model}}
   {{/if}}
+
   {{#if isStudent}}
       {{directory-settings/student user=user model=model}}
   {{/if}}
+
   <div class="directory-actions">
     <button type="button" class="save" {{action 'saveRoles'}}>Mentés</button>
-    <button type="button" class="cancel" {{action 'closeSettings'}}>Vissza</button>
   </div>
+
   {{#if successfullRoles}}
     <div class="success-box">Sikeres mentés.</div>
   {{/if}}

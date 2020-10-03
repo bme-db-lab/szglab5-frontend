@@ -13,7 +13,6 @@ span.ember-power-select-selected-item {
 
 .ember-power-select-trigger[aria-disabled=true] {
   cursor: default;
-  // background-color: transparent;
   color: black;
   @include opacity(.5);
 

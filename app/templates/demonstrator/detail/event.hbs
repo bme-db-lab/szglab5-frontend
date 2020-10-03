@@ -30,7 +30,7 @@
 
 <div class="entry-test-evaluation">
   <div class='text label'>Beugró érdemjegye</div>
-  {{input type=text value=model.firstEntryTest.grade placeholder="beugró érdemjegy" disabled=model.firstEntryTest.finalized}}
+  {{input type="number" min="1" max="5" value=model.firstEntryTest.grade placeholder="beugró érdemjegy" disabled=model.firstEntryTest.finalized}}
 
   <div class='text label'>Beugró véglegesítése</div>
   <button type="button" class="btn--toggle {{if model.firstEntryTest.finalized 'active'}}" {{action 'toggleFinalized' model.firstEntryTest}}>
@@ -44,7 +44,16 @@
 </div>
 
 {{#each model.correctableDeliverables as |deliverable|}}
-  <div class="deliverable">
+  <div class="deliverable {{if deliverable.finalized 'final' "not-final"}}">
+
+    <h3 class="finalized">
+      {{#if deliverable.finalized}}
+        Az értékelés végleges.
+      {{else}}
+        Az értékelés még <em>nincs</em> véglegesítve.
+      {{/if}}
+    </h3>
+
     {{#if deliverable.grade}}
       <div class="text" id="afterreportgrade">
         <span class='label'><strong>{{deliverable.description}}</strong> érdemjegy</span> {{deliverable.grade}} ({{deliverable.CorrectorName}} - {{deliverable.CorrectorEmail}})
@@ -102,13 +111,11 @@
 
 <div class="laboratory-evaluation">
   <div class='text label'>{{model.EventTemplate.name}} érdemjegy</div>
-  {{input type=text value=model.grade placeholder="érdemjegy" disabled=model.finalized }}
+  {{input type="number" min="1" max="5" value=model.grade placeholder="érdemjegy" disabled=model.finalized }}
 
-  <div class='text label'>{{model.EventTemplate.name}} megjegyzés</div>
-  {{textarea value=model.comment cols="9" rows="9" placeholder="megjegyzés" disabled=model.finalized }}
 
   <div class='text label'>{{model.EventTemplate.name}} IMSc</div>
-  {{input type=text value=model.imsc placeholder="IMSc" disabled=model.finalized }}
+  {{input type="number" value=model.imsc placeholder="IMSc" disabled=model.finalized }}
 
   <div class='text label'>{{model.EventTemplate.name}} véglegesítése</div>
   <button type="button" class="btn--toggle {{if model.finalized 'active'}}" {{action 'toggleFinalized' event}}>

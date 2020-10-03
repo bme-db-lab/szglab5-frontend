@@ -10,12 +10,17 @@
     width: 100%;
   }
   text-align: center;
+
   & > * {
     padding: 0.5em;
   }
+
   .bottom {
     margin-bottom: 1em;
-    border-top: 1px solid lightgray;
+
+    &.with-border {
+      border-top: 1px solid lightgray;
+    }
     button {
       margin: 0;
     }
@@ -26,19 +31,20 @@
       margin: 0.5em auto;
       min-width: 200px;
     }
-    // border-top: 1px solid black;
+
     .error-box {
       min-height: 1em;
       padding: 0.25em;
       margin: 0.5em;
     }
+
     &.error {
       input {
         border-color: $error-color;
         color: $error-color;
-        // background-color: $error-background;
       }
     }
+
     button {
       margin: 0;
     }

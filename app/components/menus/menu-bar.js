@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import MenuHelper from '../mixins/menu-helper';
+import MenuHelper from '../../mixins/menu-helper';
 import jwt_decode from 'npm:jwt-decode';
 
 

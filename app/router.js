@@ -10,7 +10,9 @@ Router.map(function() {
   this.route('evaluator');
   this.route('entry-test');
   this.route('directory');
-  this.route('demonstrator');
+  this.route('demonstrator', function() {
+    this.route('detail', { path: "/:id" });
+  });
   this.route('semester');
   this.route('login');
   this.route('notification');

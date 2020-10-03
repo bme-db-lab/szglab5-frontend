@@ -13,6 +13,7 @@ Router.map(function() {
     });
     this.route('booked', function() {
       this.route('deliverable', { path: "/:id" });
+      this.route('no-deliverable');
     });
   });
   this.route('entry-test');

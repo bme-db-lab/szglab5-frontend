@@ -51,7 +51,6 @@ export default DS.Model.extend({
   CorrectorEmail: Ember.computed('Corrector', 'Corrector.displayName', function () {
     return this.get('Corrector.email_official');
   }),
-  commits: ['commit1', 'commit4'],
   description: Ember.computed.oneWay('DeliverableTemplate.description'),
 
   formattedLastSubmittedDate: Ember.computed('lastSubmittedDate', function(){

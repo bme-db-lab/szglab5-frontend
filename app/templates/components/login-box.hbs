@@ -1,8 +1,6 @@
 <div class="login">
   <form class="top {{if hasError 'error'}}">
-    {{#auto-focus}}
-      {{input type="text" value=username placeholder="username" enter='removeError' autofocus="autofocus" }}
-    {{/auto-focus}}
+    {{input type="text" value=username placeholder="username" enter='removeError' autofocus='autofocus' }}
     {{input type="password" value=password placeholder="password" }}
     <button type="submit" name="button" {{action 'login'}}>Login</button>
     {{#if error}}

@@ -62,10 +62,10 @@
   </div>
   </div>
   {{#if isEvaluator}}
-      {{directory-settings-evaluator user=user model=model}}
+      {{directory-settings/evaluator user=user model=model}}
   {{/if}}
   {{#if isStudent}}
-      {{directory-settings-student user=user model=model}}
+      {{directory-settings/student user=user model=model}}
   {{/if}}
   <div class="directory-actions">
     <button type="button" class="save" {{action 'saveRoles'}}>Mentés</button>

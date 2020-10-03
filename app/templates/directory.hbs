@@ -21,7 +21,7 @@
           {{/if}}
         {{/unless}}
         {{#if showSettings}}
-          {{directory-settings user=user closeSettings=(action "closeSettings") impersonateUser=(action 'impersonateUser' user) model=model}}
+          {{directory-settings/user user=user closeSettings=(action "closeSettings") impersonateUser=(action 'impersonateUser' user) model=model}}
         {{/if}}
       {{else}}
         {{new-user model=model user=newUser}}

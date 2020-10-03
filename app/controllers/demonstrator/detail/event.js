@@ -36,15 +36,9 @@ export default Ember.Controller.extend({
       this.get('model.firstEntryTest').save().then(() => {
         this.get('model').save().then(() => {
           this.set('success', true);
-          this.sendAction('cancel'); // go back to the settings of all the students in the group
         }, err => errorHandler(err));
       }, err => errorHandler(err));
       return false;
-    },
-
-    cancel() {
-      this.get('model').rollbackAttributes();
-      return this.sendAction('cancel');
     },
 
     download(downloadLink) {

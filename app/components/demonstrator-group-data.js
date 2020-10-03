@@ -9,28 +9,29 @@ export default Ember.Component.extend({
   rowIndecies: ['StudentRegistration.User.displayName', 'StudentRegistration.User.neptun', 'ExerciseSheet.ExerciseType.shortName', 'firstCorrectableDeliverable.formattedLastSubmittedDate', 'firstEntryTest.grade', 'firstCorrectableDeliverable.grade', 'grade', 'supplementary'],
 
   sortedEvents: Ember.computed('events', 'events.[]', function() {
-    return this.get('events').sort((lhs, rhs) => {
-      const lhsName = lhs.get('StudentRegistration.User.displayName'), rhsName = rhs.get('StudentRegistration.User.displayName');
-      const lhsAttempt = lhs.get('attempt'), rhsAttempt = rhs.get('attempt');
+    return this.get('events')
+      .sort((lhs, rhs) => {
+        const lhsName = lhs.get('StudentRegistration.User.displayName'), rhsName = rhs.get('StudentRegistration.User.displayName');
+        const lhsAttempt = lhs.get('attempt'), rhsAttempt = rhs.get('attempt');
 
-      if (lhsAttempt > rhsAttempt) {
-        return -1;
-      }
-
-      if (lhsAttempt < rhsAttempt) {
-        return 1;
-      }
-
-      if (lhsAttempt === rhsAttempt) {
-        if (lhsName < rhsName) {
+        if (lhsAttempt > rhsAttempt) {
           return -1;
         }
-        if (lhsName > rhsName) {
+
+        if (lhsAttempt < rhsAttempt) {
           return 1;
         }
-      }
-      return 0;
-    })
+
+        if (lhsAttempt === rhsAttempt) {
+          if (lhsName < rhsName) {
+            return -1;
+          }
+          if (lhsName > rhsName) {
+            return 1;
+          }
+        }
+        return 0;
+      })
   }),
 
   eventGroup: Ember.computed('events', function() {

@@ -25,6 +25,17 @@
         .demonstrator-group, .evaluation-student {
           .deliverable, .laboratory-evaluation, .entry-test-evaluation {
             border-top: solid black 1px;
+            margin-top: 1%;
+
+            .finalized {
+              padding: 0;
+              color: red;
+            }
+
+            &.not-final {
+              border: solid red 1px;
+              padding: 0 1%;
+            }
           }
 
           button {

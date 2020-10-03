@@ -43,7 +43,16 @@
 </div>
 
 {{#each event.correctableDeliverables as |deliverable|}}
-  <div class="deliverable">
+  <div class="deliverable {{if deliverable.finalized 'final' "not-final"}}">
+
+    <h3 class="finalized">
+      {{#if deliverable.finalized}}
+        Az értékelés végleges.
+      {{else}}
+        Az értékelés még <em>nincs</em> véglegesítve.
+      {{/if}}
+    </h3>
+
     {{#if deliverable.grade}}
       <div class="text" id="afterreportgrade">
         <span class='label'><strong>{{deliverable.description}}</strong> érdemjegy</span> {{deliverable.grade}} ({{deliverable.CorrectorName}} - {{deliverable.CorrectorEmail}})

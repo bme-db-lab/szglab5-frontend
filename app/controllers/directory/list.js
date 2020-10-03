@@ -3,15 +3,25 @@ import config from '../../config/environment';
 
 export default Ember.Controller.extend({
     session: Ember.inject.service('session'),
+
+    queryParams: ['search'],
+    search: '',
+    page: 0,
+
     header: ['ID', 'Név', 'Felhasználónév', 'Neptun', 'E-mail'],
     rowIndecies: ['id', 'displayName', 'loginName', 'neptun', 'email'],
 
     showTable: false,
     showSettings: false,
     showNextPage: true,
-    search: '',
-    users: [],
-    page: 0,
+
+    initSearch() {
+      this.set('page', 0);
+      this.set('users', []);
+      if(this.get('search').length > 0) {
+        this.loadUsers();
+      }
+    },
 
     loadUsers() {
       const pageSize = 50;

@@ -4,9 +4,15 @@
     <ul>
       {{#each subMenu as |menu|}}
         <li>
-          {{#link-to menu.route menu.id tagName="button" class="submenu-text" }}
-            <span>{{menu.description}}</span>
-          {{/link-to}}
+          {{#if menu.id}}
+            {{#link-to menu.route menu.id tagName="button" class="submenu-text" }}
+              <span>{{menu.description}}</span>
+            {{/link-to}}
+          {{else}}
+            {{#link-to menu.route tagName="button" class="submenu-text" }}
+              <span>{{menu.description}}</span>
+            {{/link-to}}
+          {{/if}}
         </li>
       {{/each}}
     </ul>

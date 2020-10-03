@@ -1,10 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['directory-settings-evaluator'],
+
   currentTypes: Ember.computed('user.ExerciseTypes', 'user.ExerciseTypes.[]', 'user.ExerciseTypes.@each', function () {
     return this.get('user.ExerciseTypes').map(x => x.get('name'));
   }),
-  classNames: ['directory-settings-evaluator'],
+
   actions: {
     toggleType(exerciseType) {
       const exerciseTypes = this.get('user.ExerciseTypes');
@@ -16,6 +18,7 @@ export default Ember.Component.extend({
       }
       return false;
     },
+
     save() {
       this.set('successfullSave', false);
       this.get('user').save().then(() => {

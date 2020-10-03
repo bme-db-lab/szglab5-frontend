@@ -11,12 +11,15 @@ export default Ember.Component.extend({
   currentRoles: Ember.computed('user.Roles', 'user.Roles.[]', 'user.Roles.@each', function () {
     return this.get('user.Roles').map(x => x.get('name'));
   }),
+
   init() {
     this._super(...arguments);
     this.set('newEmail', this.get('user.email'));
   },
+
   successfullPwd: false,
   successfullEmail: false,
+
   actions: {
     setNewPwd() {
       this.set('successfullPwd', false);
@@ -28,6 +31,7 @@ export default Ember.Component.extend({
       });
       return false;
     },
+
     setNewEmail() {
       this.set('successfullEmail', false);
       this.get('user').set('email', this.get('newEmail'));
@@ -37,12 +41,15 @@ export default Ember.Component.extend({
       });
       return false;
     },
+
     closeSettings() {
       return this.sendAction('closeSettings');
     },
+
     impersonateUser() {
       return this.sendAction('impersonateUser');
     },
+
     toggleRole(role) {
       const roles = this.get('user.Roles');
       if (roles.indexOf(role) === -1) {
@@ -53,6 +60,7 @@ export default Ember.Component.extend({
       }
       return false;
     },
+
     saveRoles() {
       this.set('successfullRoles', false);
       this.get('user').save().then(() => {
@@ -62,6 +70,7 @@ export default Ember.Component.extend({
       return false;
     }
   },
+
   willDestroyElement() {
     this._super(...arguments);
     this.get('user').rollbackAttributes();

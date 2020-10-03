@@ -1,12 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  classNames: ['change-time'],
+
   error: '',
   success: false,
-  classNames: ['change-time'],
   hours: 0,
   minutes: 0,
   date: new Date(),
+
   lastSubmittedDate: Ember.computed('Deliverable.lastSubmittedDate', function () {
     let date = this.get('Deliverable.lastSubmittedDate');
     if (date === null) {
@@ -17,6 +19,7 @@ export default Ember.Component.extend({
     this.set('date', date);
     return date;
   }),
+
   actions: {
     save() {
       this.set('success', false);

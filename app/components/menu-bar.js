@@ -6,6 +6,7 @@ import jwt_decode from 'npm:jwt-decode';
 export default Ember.Component.extend(MenuHelper, {
   session: Ember.inject.service('session'),
   userData: {},
+
   init() {
     this._super(...arguments);
     this.set('isMenuNotOpen', true);
@@ -17,6 +18,7 @@ export default Ember.Component.extend(MenuHelper, {
       this.loadUserData();
     });
   },
+
   loadUserData() {
     var token = this.get('session.data.authenticated.token');
     if (!Ember.isEmpty(token)) {
@@ -26,6 +28,7 @@ export default Ember.Component.extend(MenuHelper, {
       this.set('userData', undefined);
     }
   },
+
   actions: {
     toggleMenu() {
       this.set('isMenuNotOpen', !this.get('isMenuNotOpen'));

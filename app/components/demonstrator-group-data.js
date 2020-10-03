@@ -37,12 +37,15 @@ export default Ember.Component.extend({
   eventGroup: Ember.computed('events', function() {
     return this.get('events.firstObject.CourseCode');
   }),
+
   eventPlace: Ember.computed('events', function() {
     return this.get('events.firstObject.location');
   }),
+
   eventDate: Ember.computed('events', function() {
     return this.get('events.firstObject.date');
   }),
+
   eventDeadline: Ember.computed('events', function(){
     return this.get('events.firstObject.eventDeadline');
   }),

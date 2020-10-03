@@ -2,10 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+
   init() {
     this._super(...arguments);
     this.set('user', this.get('store').createRecord('user', {}));
   },
+
   actions: {
     create() {
       this.set('error', undefined);
@@ -20,6 +22,7 @@ export default Ember.Component.extend({
       return false;
     }
   },
+
   willDestroyElement() {
     this._super(...arguments);
     this.get('user').rollbackAttributes();

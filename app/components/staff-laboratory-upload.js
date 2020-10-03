@@ -1,21 +1,25 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  session: Ember.inject.service('session'),
-  error: '',
   classNames: ['file-upload'],
+  session: Ember.inject.service('session'),
+
+  error: '',
   success: false,
+
   actions: {
     uploadStarted() {
       this.set('success', false);
       this.set('error', '');
       return false;
     },
+
     uploadSuccess() {
       this.set('success', true);
       this.get('Deliverable').reload();
       return false;
     },
+
     uploadFailed(data) {
       if (data && data.body && data.body.errors && data.body.errors[0]) {
         this.set('error', data.errors[0]);
@@ -25,6 +29,7 @@ export default Ember.Component.extend({
       }
       return false;
     },
+
     download() {
       const form = document.createElement('form');
       form.setAttribute('target', '_blank');

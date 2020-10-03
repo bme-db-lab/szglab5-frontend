@@ -65,7 +65,6 @@ div {
 		text-align: left;
 		line-height: 1.25;
 		font-weight: 300;
-		padding-top: 2%;
 
 		span, &.label {
 			font-weight: 300;
@@ -155,6 +154,7 @@ button, .button {
 	padding: 0.5rem 1rem;
 	border-radius: 0;
 	color: white;
+	margin-top: 15px;
 	box-shadow: none;
 	background: $buttonOkActive;
 	outline: none;
@@ -285,7 +285,6 @@ html {
 
 .error-box {
 	color: $error-color;
-	// background-color: $error-background;
 	border: $error-color solid 1px;
 	font-weight: 300;
 	padding: 0.4em;
@@ -294,7 +293,6 @@ html {
 
 .success-box {
 	color: $success-color;
-	// background-color: $success-background;
 	border: $success-color solid 1px;
 	font-weight: 300;
 	padding: 0.4em;

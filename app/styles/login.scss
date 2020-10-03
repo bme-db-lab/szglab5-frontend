@@ -29,7 +29,7 @@
       margin: 0.5em auto;
       min-width: 200px;
     }
-    // border-top: 1px solid black;
+
     .error-box {
       min-height: 1em;
       padding: 0.25em;
@@ -39,7 +39,6 @@
       input {
         border-color: $error-color;
         color: $error-color;
-        // background-color: $error-background;
       }
     }
     button {

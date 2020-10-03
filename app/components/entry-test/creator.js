@@ -11,10 +11,12 @@ export default Ember.Component.extend({
       });
       return false;
     },
+
     closeSettings() {
       return this.sendAction('closeSettings');
     }
   },
+
   willDestroyElement() {
     this._super(...arguments);
     this.get('question').rollbackAttributes();

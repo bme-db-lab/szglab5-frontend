@@ -2,14 +2,14 @@
   {{#if (eq question null)}}
     {{#unless (eq exerciseCategory null)}}
       {{table-component header=header body=getBody rowIndecies=rowIndecies withCheckbox=true withDelete=true withSettings=true openSettings=(action 'openSettings') delete=(action 'delete')}}
-      <button {{action 'newQuestion'}}>Új kérdés hozzáadása</button>
-      <a class="button" {{action 'print'}}>Nyomtatás</a>
+      <button class="with-margin" {{action 'newQuestion'}}>Új kérdés hozzáadása</button>
+      <button class="button with-margin" {{action 'print'}}>Nyomtatás</button>
     {{else}}
       <div class="text">
         Válassz egy labor kódot a bal oldali menüből!
       </div>
     {{/unless}}
   {{else}}
-    {{entry-test-creator question=question edit=true closeSettings=(action "closeSettings") model=model}}
+    {{entry-test/creator question=question edit=true closeSettings=(action "closeSettings") model=model}}
   {{/if}}
 </div>

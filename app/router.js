@@ -7,7 +7,14 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('evaluator');
+  this.route('evaluator', function() {
+    this.route('to-fix', function() {
+      this.route('event', { path: "/event/:id" });
+    });
+    this.route('booked', function() {
+      this.route('event', { path: "/event/:id" });
+    });
+  });
   this.route('entry-test');
   this.route('directory');
   this.route('demonstrator', function() {

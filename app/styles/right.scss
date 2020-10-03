@@ -28,6 +28,11 @@
           }
         }
 
+        h3 {
+          padding-left: 0;
+          padding-bottom: 0;
+        }
+
         a, input, button {
           &.no-margin-top {
             margin-top: 0;

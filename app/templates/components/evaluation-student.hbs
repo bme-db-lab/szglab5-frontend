@@ -12,7 +12,7 @@
   <div class="text">{{event.formattedDate}}</div>
 
   <div class='text label'>Entry test grade</div>
-  {{input type=text value=event.firstEntryTest.grade placeholder="grade" }}
+  {{input type="number" min="1" max="5" value=event.firstEntryTest.grade placeholder="grade" }}
 
   <div class='text label'>Entry test finalized</div>
   <button type="button" class="btn--toggle {{if event.firstEntryTest.finalized 'active'}}" {{action 'toggleFinalized' event.firstEntryTest}}>finalized</button>
@@ -20,7 +20,7 @@
   <div class='text label'>Exercise grade</div>
   <div class="text" id="afterreportgrade">
     {{#if event.firstCorrectableDeliverable.grade}}
-    {{event.firstCorrectableDeliverable.grade}} ({{event.firstCorrectableDeliverable.CorrectorName}})
+      {{event.firstCorrectableDeliverable.grade}} ({{event.firstCorrectableDeliverable.CorrectorName}})
     {{/if}}
   </div>
 
@@ -30,7 +30,7 @@
   </div>
 
   <div class='text label'>{{event.EventTemplate.name}} grade</div>
-  {{input type=text value=event.grade placeholder="grade" }}
+  {{input type="number" min="1" max="5" value=event.grade placeholder="grade" }}
 
   <div class='text label'>{{event.EventTemplate.name}} comment</div>
   {{textarea value=event.comment cols="9" rows="9" placeholder="comment" }}

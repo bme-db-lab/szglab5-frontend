@@ -1,8 +1,11 @@
 <div class="login">
   <form class="top {{if hasError 'error'}}">
-    {{input type="text" value=username placeholder="username" enter='removeError' autofocus='autofocus' }}
-    {{input type="password" value=password placeholder="password" }}
-    <button type="submit" name="button" {{action 'login'}}>Login</button>
+    {{#if showInputFields}}
+      {{input type="text" value=username placeholder="username" enter='removeError' autofocus='autofocus' }}
+      {{input type="password" value=password placeholder="password" }}
+      <button type="submit" name="button" {{action 'login'}}>Login</button>
+    {{/if}}
+
     {{#if error}}
     <div class="error-box">
       {{error}}
@@ -10,7 +13,7 @@
     {{/if}}
   </form>
 
-  <div class="bottom">
+  <div class="bottom {{if showInputFields 'with-border'}}">
     <button type="button" name="button" {{action 'loginBMERedirect'}}>Login using my Edu ID</button>
     {{#if errorShibboleth}}
     <div class="error-box">

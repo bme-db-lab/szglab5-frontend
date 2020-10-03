@@ -15,7 +15,10 @@
   }
   .bottom {
     margin-bottom: 1em;
-    border-top: 1px solid lightgray;
+
+    &.with-border {
+      border-top: 1px solid lightgray;
+    }
     button {
       margin: 0;
     }

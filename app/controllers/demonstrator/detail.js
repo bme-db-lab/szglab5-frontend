@@ -60,7 +60,7 @@ export default Ember.Controller.extend({
 
   actions: {
     evaluateEvent: function(event) {
-      this.transitionToRoute("demonstrator.detail.event", this.get('model.id'), event.get('id'));
+      this.transitionToRoute("demonstrator.detail.event", event.get('id'));
       return false;
     },
 

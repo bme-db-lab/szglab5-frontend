@@ -5,6 +5,6 @@ import DemonstratorAuthenticatedRouteMixin from '../../mixins/demonstrator-authe
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, ErrorRouteMixin, DemonstratorAuthenticatedRouteMixin, {
   model(params) {
-    return this.get('store').findRecord('eventTemplate', params.id);
+    return this.get('store').findRecord('eventTemplate', params.eventTemplateId);
   }
 });

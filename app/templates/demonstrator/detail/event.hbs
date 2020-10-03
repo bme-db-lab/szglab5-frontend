@@ -121,7 +121,7 @@
 
   <div class='text'>
     <span class='label'>{{model.EventTemplate.name}} véglegesítése</span>
-    <button type="button" class="btn--toggle {{if model.finalized 'active'}}" {{action 'toggleFinalized' event}}>
+    <button type="button" class="btn--toggle {{if model.finalized 'active'}}" {{action 'toggleFinalized' model}}>
       {{#if model.finalized}}
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         {{else}}

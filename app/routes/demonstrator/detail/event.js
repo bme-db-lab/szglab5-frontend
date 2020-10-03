@@ -11,6 +11,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ErrorRouteMixin, Demo
   },
 
   model(params) {
-    return this.get('store').findRecord('event', params.id);
+    return this.get('store').findRecord('event', params.eventId);
   }
 });

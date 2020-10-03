@@ -9,8 +9,8 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('change-group');
   this.route('demonstrator', function() {
-    this.route('detail', { path: "/:id" }, function() {
-      this.route('event', { path: "/event/:id" });
+    this.route('detail', { path: "/:eventTemplateId" }, function() {
+      this.route('event', { path: "/event/:eventId" });
     });
   });
   this.route('directory', function() {

@@ -32,8 +32,9 @@
   <div class='text label'>Beugró érdemjegye</div>
   {{input type="number" min="1" max="5" value=model.firstEntryTest.grade placeholder="beugró érdemjegy" disabled=model.firstEntryTest.finalized}}
 
-  <div class='text label'>Beugró véglegesítése</div>
-  <button type="button" class="btn--toggle {{if model.firstEntryTest.finalized 'active'}}" {{action 'toggleFinalized' model.firstEntryTest}}>
+  <div class='text'>
+    <span class='label'>Beugró véglegesítése</span>
+    <button type="button" class="btn--toggle {{if model.firstEntryTest.finalized 'active'}}" {{action 'toggleFinalized' model.firstEntryTest}}>
       {{#if model.firstEntryTest.finalized}}
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         {{else}}
@@ -41,6 +42,7 @@
       {{/if}}
       Véglegesítve
     </button>
+  </div>
 </div>
 
 {{#each model.correctableDeliverables as |deliverable|}}
@@ -117,8 +119,9 @@
   <div class='text label'>{{model.EventTemplate.name}} IMSc</div>
   {{input type="number" value=model.imsc placeholder="IMSc" disabled=model.finalized }}
 
-  <div class='text label'>{{model.EventTemplate.name}} véglegesítése</div>
-  <button type="button" class="btn--toggle {{if model.finalized 'active'}}" {{action 'toggleFinalized' event}}>
+  <div class='text'>
+    <span class='label'>{{model.EventTemplate.name}} véglegesítése</span>
+    <button type="button" class="btn--toggle {{if model.finalized 'active'}}" {{action 'toggleFinalized' event}}>
       {{#if model.finalized}}
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         {{else}}
@@ -126,6 +129,7 @@
       {{/if}}
       Véglegesítve
     </button>
+  </div>
 </div>
 
 <button type="button" {{action 'save'}}>Mentés</button>

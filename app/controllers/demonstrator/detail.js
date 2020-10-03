@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import config from '../../config/environment';
-import { dateformat } from '../../helpers/dateformat';
+
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   classNames: ['demonstrator-group'],
@@ -17,8 +17,6 @@ export default Ember.Controller.extend({
         }).then(events => {
           let sortedEventsByCourseCode = {}
           events.map(event => {
-            event.set('formattedDate', dateformat([event.get('date')]));
-
             const courseCode = event.get('CourseCode');
             if(!Object.keys(sortedEventsByCourseCode).includes(courseCode)) {
               sortedEventsByCourseCode[courseCode] = []

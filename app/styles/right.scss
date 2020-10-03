@@ -26,42 +26,36 @@
       }
 
       .demonstrator {
-        .demonstrator-group, .evaluation-student {
-          .deliverable, .laboratory-evaluation, .entry-test-evaluation {
-            border-top: solid black 1px;
-            margin-top: 1%;
+        .deliverable, .laboratory-evaluation, .entry-test-evaluation {
+          border-top: solid black 1px;
+          margin-top: 1%;
 
-            .finalized {
-              padding: 0;
-              color: red;
-            }
-
-            &.not-final {
-              border: solid red 1px;
-              padding: 0 1%;
-            }
+          .finalized {
+            padding: 0;
+            color: red;
           }
 
-          a, input, button {
-            &.no-margin-top {
-              margin-top: 0;
-            }
+          &.not-final {
+            border: solid red 1px;
+            padding: 0 1%;
           }
+        }
 
-          button {
-            &.btn--toggle {
-              display: block;
-            }
-
-            &.cancel {
-              margin-left: 1%;
-            }
-
+        a, input, button {
+          &.no-margin-top {
+            margin-top: 0;
           }
+        }
 
-          .akep {
+        button {
+          &.cancel {
             margin-left: 1%;
           }
+
+        }
+
+        .akep {
+          margin-left: 1%;
         }
       }
 

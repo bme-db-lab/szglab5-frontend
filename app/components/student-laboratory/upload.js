@@ -4,8 +4,8 @@ export default Ember.Component.extend({
   classNames: ['file-upload'],
   session: Ember.inject.service('session'),
 
-  success: false,
   error: '',
+  success: false,
 
   actions: {
     uploadStarted() {

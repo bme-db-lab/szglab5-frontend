@@ -1,46 +1,52 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   classNames: ['evaluation-student'],
+
   actions: {
     toggleFinalized(obj) {
       obj.toggleProperty('finalized');
       return false;
     },
+
     save() {
-      if (this.get('event.comment') === '') {
-        this.set('event.comment', null);
+      if (this.get('model.comment') === '') {
+        this.set('model.comment', null);
       }
-      if (this.get('event.grade') === '') {
-        this.set('event.grade', null);
+      if (this.get('model.grade') === '') {
+        this.set('model.grade', null);
       }
-      if (this.get('event.firstEntryTest.grade') === '') {
-        this.set('event.firstEntryTest.grade', null);
+      if (this.get('model.firstEntryTest.grade') === '') {
+        this.set('model.firstEntryTest.grade', null);
       }
-      if (this.get('event.imsc') === '') {
-        this.set('event.imsc', 0);
+      if (this.get('model.imsc') === '') {
+        this.set('model.imsc', 0);
       }
+
       // TODO: Show messagebox
       const errorHandler = t => {
         if (t.errors && t.errors.length > 0 && t.errors[0].title) {
           this.set('error', t.errors[0].title);
         }
       };
+
       this.set('success', false);
       this.set('error', '');
-      this.get('event.firstEntryTest').save().then(() => {
-        this.get('event').save().then(() => {
+      this.get('model.firstEntryTest').save().then(() => {
+        this.get('model').save().then(() => {
           this.set('success', true);
           this.sendAction('cancel'); // go back to the settings of all the students in the group
         }, err => errorHandler(err));
       }, err => errorHandler(err));
       return false;
     },
+
     cancel() {
-      this.get('event').rollbackAttributes();
+      this.get('model').rollbackAttributes();
       return this.sendAction('cancel');
     },
+
     download(downloadLink) {
       const form = document.createElement('form');
       form.setAttribute('target', '_blank');

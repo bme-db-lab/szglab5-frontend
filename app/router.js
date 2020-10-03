@@ -11,7 +11,9 @@ Router.map(function() {
   this.route('entry-test');
   this.route('directory');
   this.route('demonstrator', function() {
-    this.route('detail', { path: "/:id" });
+    this.route('detail', { path: "/:id" }, function() {
+      this.route('event', { path: "/event/:id" });
+    });
   });
   this.route('semester');
   this.route('login');

@@ -1,5 +1,5 @@
 <div class="normal-label">
-  {{await StudentRegistration.Semester.academicyear}}/{{await StudentRegistration.Semester.academicterm}} szemeszter
+  {{StudentRegistration.Semester.academicyear}}/{{StudentRegistration.Semester.academicterm}} szemeszter
 </div>
 
 {{#each (await StudentRegistration.Events) as |event|}}

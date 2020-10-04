@@ -48,7 +48,7 @@
           <div class="text">
             <span class=" label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> deadline:</span> {{dateformat Deliverable.deadline}} ({{timeLeft}})
           </div>
-          {{student-laboratory-upload Deliverable=Deliverable}}
+          {{student-laboratory/upload Deliverable=Deliverable}}
           {{#if Deliverable.finalized}}
             <div class="text">
               <span class=" label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> evaluation:</span> {{Deliverable.grade}} ({{Deliverable.CorrectorName}} - {{Deliverable.CorrectorEmail}})

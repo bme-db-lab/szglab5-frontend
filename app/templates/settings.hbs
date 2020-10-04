@@ -50,7 +50,7 @@
       {{textarea value=model.sshPublicKey class="ssh" cols="9" rows="9" placeholder="ssh publikus kulcs" id='sshkey'}}-->
       {{/if}}
       <div>
-        <button type="submit" {{action 'save'}}>Save</button>
+        <button type="submit"  class="with-margin" {{action 'save'}}>Save</button>
       </div>
       {{#if error}}
         <div class="error-box">{{error}}</div>

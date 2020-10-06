@@ -49,30 +49,21 @@ export default Ember.Component.extend({
 
     downloadHandout() {
       const handoutUrl = this.get('result.handoutUrl');
-      this.set('handoutDownloadError', null);
 
       if (handoutUrl) {
         const url = env.backendUrl + handoutUrl;
-        Ember.$.get({
-          url: url,
-          beforeSend: (xhr) => { xhr.setRequestHeader('Authorization', `Bearer ${this.get('session.data.authenticated.token')}`); },
-          success: (pdf) => {
-            var blob = new Blob([pdf], {type: 'application/pdf'});
-            var a = document.createElement('a');
-            var downloadUrl = window.URL.createObjectURL(blob);
-            a.href = url;
-            document.body.append(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(downloadUrl);
-          },
-          error: (response) => {
-            const responseText = JSON.parse(response.responseText);
-            if (responseText.errors && responseText.errors.length > 0 && responseText.errors[0].title) {
-              this.set('handoutDownloadError', responseText.errors[0].title);
-            }
-          }
-        })
+        const form = document.createElement('form');
+        form.setAttribute('target', '_blank');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', url);
+        const hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'token');
+        hiddenInput.setAttribute('value', this.get('session.data.authenticated.token'));
+        form.appendChild(hiddenInput);
+        document.body.appendChild(form);
+        form.submit();
+        form.remove();
       }
     }
   }

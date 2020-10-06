@@ -5,8 +5,6 @@ import env from "../../config/environment"
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
-  handoutDownloadError: null,
-
   exerciseShortName: Ember.computed('result', 'result.ExerciseSheet', function () {
     if (this.get('result') && this.get('result.ExerciseSheet')) {
       return this.get('result.ExerciseSheet.ExerciseType').then(exerciseType => {
@@ -51,19 +49,33 @@ export default Ember.Component.extend({
       const handoutUrl = this.get('result.handoutUrl');
 
       if (handoutUrl) {
-        const url = env.backendUrl + handoutUrl;
-        const form = document.createElement('form');
-        form.setAttribute('target', '_blank');
-        form.setAttribute('method', 'post');
-        form.setAttribute('action', url);
-        const hiddenInput = document.createElement('input');
-        hiddenInput.setAttribute('type', 'hidden');
-        hiddenInput.setAttribute('name', 'token');
-        hiddenInput.setAttribute('value', this.get('session.data.authenticated.token'));
-        form.appendChild(hiddenInput);
-        document.body.appendChild(form);
-        form.submit();
-        form.remove();
+        const filename = handoutUrl.replace(new RegExp(/\/events\/[\d]+\/get-handout\//g), '');
+
+        fetch(env.backendUrl + handoutUrl, {
+            headers: {
+              Authorization: `Bearer ${this.get('session.data.authenticated.token')}`
+            }
+        }).then((response) => response.blob())
+          .then((blob) => {
+            // from: https://blog.logrocket.com/programmatic-file-downloads-in-the-browser-9a5186298d5c/
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            a.href = url;
+            a.download = filename || 'download';
+
+            const clickHandler = () => {
+              setTimeout(() => {
+                URL.revokeObjectURL(url);
+                a.removeEventListener('click', clickHandler);
+                a.remove();
+              }, 150);
+            };
+
+            a.addEventListener('click', clickHandler, false);
+            a.click();
+          });
       }
     }
   }

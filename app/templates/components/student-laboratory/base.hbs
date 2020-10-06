@@ -3,15 +3,34 @@
     <div class="text">
       <span class="text label">Time</span> {{dateformat result.date}}
     </div>
+
     <div class="text">
       <span class="text label">Place</span> {{result.location}}
     </div>
+
     <div class="text">
       <span class="text label">Demonstrator</span> {{result.Demonstrator.displayName}} ({{result.Demonstrator.email_official}})
     </div>
+
+    {{#if result.handoutUrl}}
+      <div class="text label">Handout document</div>
+      <button {{action 'downloadHandout'}}>Download</button>
+
+      {{#if handoutDownloadError}}
+        <div class="error-box">{{handoutDownloadError}}</div>
+      {{/if}}
+
+    {{else}}
+      <div class="text">
+        <span class="label">Handout document</span>
+        The handout document will be available when your lesson starts.
+      </div>
+    {{/if}}
+
     <div class="text">
       <span class="label">Exercise type</span> {{await exerciseShortName}}
     </div>
+
   </div>
   {{#if result.finalized}}
     <div class="lab-finalized">

@@ -62,11 +62,17 @@ export default Ember.Component.extend({
           if (response.ok) {
             return response.blob();
           }
-
-          this.set('handoutDownloadError', response.statusText);
-          return null;
+          throw response;
         })
-          .then((blob) => {
+        .catch((response) => {
+          response.json().then((res) => {
+            if (res.errors && res.errors.length > 0 && res.errors[0].title) {
+              this.set('handoutDownloadError', res.errors[0].title);
+              return;
+            }
+            this.set('handoutDownloadError', "Something went wrong while trying to download the handout file.");
+          })
+        }).then((blob) => {
             if (blob) {
               // from: https://blog.logrocket.com/programmatic-file-downloads-in-the-browser-9a5186298d5c/
 

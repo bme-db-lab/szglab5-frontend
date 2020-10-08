@@ -51,25 +51,25 @@
         {{#if (eq Deliverable.DeliverableTemplate.type 'BEUGRO')}}
 
           {{#if Deliverable.finalized}}
-            <div class="text"><span class="label"><strong>Entry test</strong> grade:</span> {{Deliverable.grade}}
+            <div class="text"><span class="label"><strong>Entry test</strong> grade</span> {{Deliverable.grade}}
             </div>
             {{#if Deliverable.comment}}
               <div class="text label"><strong>Entry test </strong>comment:</div>
               <div class="text long">{{Deliverable.comment}}</div>
             {{/if}}
           {{else}}
-            <div class="text"><span class="label"><strong>Entry test</strong> grade:</span> No evaluation yet.
+            <div class="text"><span class="label"><strong>Entry test</strong> grade</span> No evaluation yet.
             </div>
           {{/if}}
         {{/if}}
         {{#if (eq Deliverable.DeliverableTemplate.type 'FILE')}}
           <div class="text">
-            <span class=" label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> deadline:</span> {{dateformat Deliverable.deadline}} ({{timeLeft}})
+            <span class=" label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> deadline</span> {{dateformat Deliverable.deadline}} ({{timeLeft}})
           </div>
           {{student-laboratory/upload Deliverable=Deliverable}}
           {{#if Deliverable.finalized}}
             <div class="text">
-              <span class=" label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> evaluation:</span> {{Deliverable.grade}} ({{Deliverable.CorrectorName}} - {{Deliverable.CorrectorEmail}})
+              <span class=" label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> evaluation</span> {{Deliverable.grade}} ({{Deliverable.CorrectorName}} - {{Deliverable.CorrectorEmail}})
             </div>
             <div class="text">
               <span class="span label">IMSc points</span> {{Deliverable.imsc}}
@@ -87,14 +87,14 @@
         {{#if (eq Deliverable.DeliverableTemplate.type 'GIT_REPO')}}
           {{#if Deliverable.isOver}}
             <div class="text">
-              <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> uploaded at:</span> {{dateformat Deliverable.lastSubmittedDate}}
+              <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> uploaded at</span> {{dateformat Deliverable.lastSubmittedDate}}
             </div>
             {{#if Deliverable.finalized}}
               <div class="text">
-                <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> evaluator:</span> {{Deliverable.CorrectorName}} ({{Deliverable.CorrectorEmail}})
+                <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> evaluator</span> {{Deliverable.CorrectorName}} ({{Deliverable.CorrectorEmail}})
               </div>
               <div class="text">
-                <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> grade:</span> {{Deliverable.grade}}
+                <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> grade</span> {{Deliverable.grade}}
               </div>
               {{#if Deliverable.comment}}
                 <div class="text label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> comment:</div>
@@ -107,10 +107,10 @@
             {{/if}}
           {{else}}
             <div class="text">
-              <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> deadline:</span> {{dateformat Deliverable.deadline}}
+              <span class="label"><strong>{{Deliverable.DeliverableTemplate.description}}</strong> deadline</span> {{dateformat Deliverable.deadline}}
             </div>
             <div class="text">
-              <span class="label">Git:</span> {{Deliverable.url}}
+              <span class="label">Git</span> {{Deliverable.url}}
             </div>
             <div class="tagSelector">
               {{#power-select options=Deliverable.commits selected=Deliverable.commit onchange=(action "selectCommit" Deliverable) as |commit|}}

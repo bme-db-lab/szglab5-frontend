@@ -15,6 +15,10 @@
     {{#if result.handoutUrl}}
       <div class="text label">Handout document</div>
       <button {{action 'downloadHandout'}}>Download</button>
+
+      {{#if handoutDownloadError}}
+        <div class="error-box">{{handoutDownloadError}}</div>
+      {{/if}}
     {{else}}
       <div class="text">
         <span class="label">Handout document</span>

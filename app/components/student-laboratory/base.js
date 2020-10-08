@@ -5,6 +5,8 @@ import env from "../../config/environment"
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
+  handoutDownloadError: null,
+
   exerciseShortName: Ember.computed('result', 'result.ExerciseSheet', function () {
     if (this.get('result') && this.get('result.ExerciseSheet')) {
       return this.get('result.ExerciseSheet.ExerciseType').then(exerciseType => {
@@ -47,6 +49,7 @@ export default Ember.Component.extend({
 
     downloadHandout() {
       const handoutUrl = this.get('result.handoutUrl');
+      this.set('handoutDownloadError', null);
 
       if (handoutUrl) {
         const filename = handoutUrl.replace(new RegExp(/\/events\/[\d]+\/get-handout\//g), '');
@@ -55,27 +58,39 @@ export default Ember.Component.extend({
             headers: {
               Authorization: `Bearer ${this.get('session.data.authenticated.token')}`
             }
-        }).then((response) => response.blob())
+        }).then((response) => {
+          if (response.ok) {
+            return response.blob();
+          }
+
+          this.set('handoutDownloadError', response.statusText);
+          return null;
+        })
           .then((blob) => {
-            // from: https://blog.logrocket.com/programmatic-file-downloads-in-the-browser-9a5186298d5c/
+            if (blob) {
+              // from: https://blog.logrocket.com/programmatic-file-downloads-in-the-browser-9a5186298d5c/
 
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
 
-            a.href = url;
-            a.download = filename || 'download';
+              a.href = url;
+              a.download = filename || 'download';
 
-            const clickHandler = () => {
-              setTimeout(() => {
-                URL.revokeObjectURL(url);
-                a.removeEventListener('click', clickHandler);
-                a.remove();
-              }, 150);
-            };
+              const clickHandler = () => {
+                setTimeout(() => {
+                  URL.revokeObjectURL(url);
+                  a.removeEventListener('click', clickHandler);
+                  a.remove();
+                }, 150);
+              };
 
-            a.addEventListener('click', clickHandler, false);
-            a.click();
+              a.addEventListener('click', clickHandler, false);
+              a.click();
+            }
           });
+      }
+      else {
+        this.set('handoutDownloadError', "Download url was not provided for this event.");
       }
     }
   }

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import config from '../../config/environment';
+import moment from 'moment';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
@@ -15,17 +16,30 @@ export default Ember.Controller.extend({
             eventTemplateId: this.get('model.id')
           }
         }).then(events => {
-          let sortedEventsByCourseCode = {}
+          let separatedEventsByCourseCode = {}
+          let eventDateByCourseCode = []
+
           events.map(event => {
             const courseCode = event.get('CourseCode');
-            if(!Object.keys(sortedEventsByCourseCode).includes(courseCode)) {
-              sortedEventsByCourseCode[courseCode] = []
+            if(!Object.keys(separatedEventsByCourseCode).includes(courseCode)) {
+              separatedEventsByCourseCode[courseCode] = [];
+              eventDateByCourseCode.push({ courseCode: courseCode, date: event.get('date')});
             }
-            sortedEventsByCourseCode[courseCode].push(event)
+
+            separatedEventsByCourseCode[courseCode].push(event);
             return event;
           });
 
-          resolve(sortedEventsByCourseCode);
+          const sortedDates = eventDateByCourseCode.sort(function(a, b) {
+            return moment(a.date).diff(moment(b.date));
+          })
+
+          let finalEventsByCourseCode = {}
+          sortedDates.forEach(function(sorted) {
+            finalEventsByCourseCode[sorted.courseCode] = separatedEventsByCourseCode[sorted.courseCode];
+          });
+
+          resolve(finalEventsByCourseCode);
         }, err => {
           console.error(err);
           reject(err);

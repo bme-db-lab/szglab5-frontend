@@ -1,5 +1,5 @@
 <div class="content settings">
-  {{left-menu title="Settings" currentView=currentView goToView=(action 'goToView') subMenu=subMenu}}
+  {{menus/left-menu title="Settings" currentView=currentView goToView=(action 'goToView') subMenu=subMenu}}
 
   <div class='right'>
     <form class='settings'>
@@ -8,28 +8,32 @@
         {{model.loginName}}
       </div>
       {{#if (eq currentView 'email')}}
-      <div class="text label" for="email">e-mail</div>
-      {{input type="email" value=model.email placeholder='e-mail' id='email'}}
+        <div class="text label" for="email">e-mail</div>
+        {{input type="email" value=model.email placeholder='e-mail' id='email'}}
 
-      <div class="text label" for="mailinglist">Mailing list</div>
-      <button type="button" class="btn--toggle {{if model.subscribedToMailList 'active'}}" {{action 'toggleMailList'}} id="mailinglist">
-        {{#if model.subscribedToMailList}}
-          <i class="fa fa-check-square-o" aria-hidden="true"></i>
-          {{else}}
-          <i class="fa fa-square-o" aria-hidden="true"></i>
-        {{/if}}
-        subscribe
-      </button>
+        <div class="text">
+          <span class="label" for="mailinglist">Mailing list</span>
+          <button type="button" class="btn--toggle {{if model.subscribedToMailList 'active'}}" {{action 'toggleMailList'}} id="mailinglist">
+            {{#if model.subscribedToMailList}}
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              {{else}}
+              <i class="fa fa-square-o" aria-hidden="true"></i>
+            {{/if}}
+            subscribe
+          </button>
+        </div>
 
-      <div class="text label" for="emailnotifications">E-mail notifications</div>
-      <button type="button" class="btn--toggle {{if model.subscribedToEmailNotify 'active'}}" {{action 'toggleNotifications'}} id="emailnotifications">
-        {{#if model.subscribedToEmailNotify}}
-          <i class="fa fa-check-square-o" aria-hidden="true"></i>
-          {{else}}
-          <i class="fa fa-square-o" aria-hidden="true"></i>
-        {{/if}}
-        subscribe
-      </button>
+        <div class="text">
+          <span class="label" for="emailnotifications">E-mail notifications</span>
+          <button type="button" class="btn--toggle {{if model.subscribedToEmailNotify 'active'}}" {{action 'toggleNotifications'}} id="emailnotifications">
+            {{#if model.subscribedToEmailNotify}}
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+              {{else}}
+              <i class="fa fa-square-o" aria-hidden="true"></i>
+            {{/if}}
+            subscribe
+          </button>
+        </div>
       {{/if}}
       {{#if (eq currentView 'password')}}
 
@@ -46,7 +50,7 @@
       {{textarea value=model.sshPublicKey class="ssh" cols="9" rows="9" placeholder="ssh publikus kulcs" id='sshkey'}}-->
       {{/if}}
       <div>
-        <button type="submit" {{action 'save'}}>Save</button>
+        <button type="submit"  class="with-margin" {{action 'save'}}>Save</button>
       </div>
       {{#if error}}
         <div class="error-box">{{error}}</div>

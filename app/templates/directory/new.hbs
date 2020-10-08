@@ -1,0 +1,25 @@
+<div class="text label">Név</div>
+{{input type="text" value=user.displayName placeholder="név"}}
+
+<div class="text label">Neptun</div>
+{{input type="text" value=user.neptun placeholder="neptun"}}
+
+<div class="text label">Felhasználónév</div>
+{{input type="text" value=user.loginName placeholder="felhasználónév"}}
+
+<div class="text label">Jelszó</div>
+{{input type="password" value=user.newpwd placeholder="jelszó"}}
+
+<button type="button" class="with-margin" {{action 'create'}}>Létrehozás</button>
+
+{{#if error}}
+  <div class="error-box">
+    {{error}}
+  </div>
+{{/if}}
+
+{{#if success}}
+  <div class="success-box">
+    Sikeres létrehozás.
+  </div>
+{{/if}}

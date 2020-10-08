@@ -1,0 +1,78 @@
+<div class="text">
+    <span class="label">Beadandó</span>
+    {{event.EventTemplate.ExerciseCategory.type}} / {{deliverable.DeliverableTemplate.description}}
+</div>
+
+<div class="text">
+    <span class="label">Hallgató</span>
+    {{student.displayName}} ({{student.neptun}})
+</div>
+
+{{#if student.email}}
+    <div class="text">
+        <span class="label">Hallgató e-mail címe</span>
+        {{student.email}}
+    </div>
+{{/if}}
+
+<div class="text">
+    <span class="label">Demonstrátor</span>
+    {{eventDemonstrator.displayName}} ({{eventDemonstrator.email_official}})
+</div>
+
+<div class="text">
+    <span class="label">Feladattípus</span>
+    {{event.ExerciseSheet.ExerciseType.shortName}}
+</div>
+
+<div class="text">
+    <span class="label">Határidő</span>
+    {{dateformat deliverable.deadline}}
+</div>
+
+{{#if deliverable.isOver}}
+    <div class="text label">Fájl</div>
+
+    {{#if deliverable.uploaded}}
+        <div>
+            <button class="button" {{action 'download'}}>Letöltés</button>
+            <a class="button akep" target="_blank" href="https://ertekelo-dev.db.bme.hu/#AKEPView/{{student.neptun}}/{{deliverable.event.EventTemplate.ExerciseCategory.type}}">AKÉP</a>
+        </div>
+
+        <div class="text">
+            <span class='label'>Feltöltés ideje</span>
+            {{dateformat deliverable.lastSubmittedDate}}
+        </div>
+    {{else}}
+        <div class="text">Nincs feltölve.</div>
+    {{/if}}
+
+    <div class="text">
+        <span class="label">Javítandó kiválasztása</span>
+        {{#unless (eq deliverable.Corrector.id model.user.id)}}
+            {{#if deliverable.Corrector.id}}
+                Ezt a beadandót valaki más már lefoglalta.
+            {{else}}
+                Ezt a beadandót még nem foglalták le.
+                <button type="button" class="with-margin" {{action 'book'}}>Foglalás</button>
+            {{/if}}
+        {{else}}
+            Ezt a beadandót sikeresen lefoglaltad. A javítást a <em>Javítás és kijavított feladatok</em> menüponton keresztül kezdheted meg.
+        {{/unless}}
+    </div>
+
+    {{#if success}}
+        <div class="success-box">
+        Sikeres mentés.
+        </div>
+    {{else}}
+        {{#unless (or (eq error '') (eq error undefined))}}
+            <div class="error-box">
+                {{error}}
+            </div>
+        {{/unless}}
+    {{/if}}
+
+{{else}}
+    <div class="text">Még nem járt le a határidő.</div>
+{{/if}}

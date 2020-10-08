@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import { dateformat } from '../helpers/dateformat';
 
 export default DS.Model.extend({
   date: DS.attr('date'),
@@ -12,17 +13,25 @@ export default DS.Model.extend({
   imsc: DS.attr('number'),
   grade: DS.attr('number'),
   updatedAt: DS.attr('date'),
+  handoutUrl: DS.attr('string'),
   Deliverables: DS.hasMany('deliverable', { async: false, inverse: 'Event' }),
   ExerciseSheet: DS.belongsTo('exerciseSheet', { async: false, inverse: 'Events' }),
   StudentRegistration: DS.belongsTo('studentRegistration', { inverse: 'Events' }),
   EventTemplate: DS.belongsTo('eventTemplate', { async: false, inverse: 'Events' }),
   Demonstrator: DS.belongsTo('user', { async: false, inverse: 'Event' }),
+
+  formattedDate: Ember.computed('date', function(){
+    return dateformat([this.get('date')]);
+  }),
   User: Ember.computed('StudentRegistration', 'StudentRegistration.User', function() {
     return new RSVP.Promise((resolve,reject) => {
       this.get('StudentRegistration').then(studentRegistration => {
         studentRegistration.get('User').then(user => resolve(user), reject);
       });
     });
+  }),
+  CourseCode: Ember.computed('StudentRegistration', 'StudentRegistration.neptunCourseCode', function() {
+    return this.get('StudentRegistration.neptunCourseCode');
   }),
   correctableDeliverables: Ember.computed('Deliverables', 'Deliverables.[]', function() {
     return this.get('Deliverables').filter(x => x.get('DeliverableTemplate.type') === 'FILE');

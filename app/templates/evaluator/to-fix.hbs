@@ -1,0 +1,20 @@
+<div class="text label">Feladattípus:</div>
+{{#power-select options=myExerciseTypes selected=selectedExerciseType onchange= (action "changeExerciseType") as |eT|}}
+    {{eT.shortName}}
+{{/power-select}}
+
+<div class="text label">Labor kód:</div>
+{{#power-select options=model.eventTemplates selected=selectedEventTemplate onchange=(action "changeEventTemplate") as |eT|}}
+    {{eT.ExerciseCategory.type}}
+{{/power-select}}
+
+{{#if selectedEventTemplate}}
+    <div class="text label">Beadandó típusa:</div>
+    {{#power-select options=(filter-deliverable-templates selectedEventTemplate.DeliverableTemplates) selected=selectedDeliverableTemplate onchange=(action "changeDeliverableTemplate") as |dT|}}
+        {{dT.description}}
+    {{/power-select}}
+{{/if}}
+
+{{table-component header=header body=filteredDeliverablesSelect rowIndecies=rowIndecies clickable=true changeEvent=(action 'changeDeliverable') onClickRowAction='changeEvent'}}
+
+<button class="with-margin button" {{action 'loadFilteredDeliverables'}}>Továbbiak betöltése</button>

@@ -1,6 +1,5 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-import { dateformat } from '../helpers/dateformat';
 
 export default DS.Model.extend({
   type: DS.attr('string'),
@@ -11,6 +10,7 @@ export default DS.Model.extend({
   name: Ember.computed('type', 'seqNumber', 'ExerciseCategory.type', function () {
     return `${this.get('seqNumber')}. ${this.get('ExerciseCategory.type')} ${this.get('type')}`;
   }),
+
   eventPlace: Ember.computed('Events', function(){
     return this.get('Events').then (function(events){
       return events.get('firstObject.location');

@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+
   init() {
     this._super(...arguments);
     this.set('new', false);
@@ -16,27 +17,33 @@ export default Ember.Component.extend({
       this.set('new', true);
     }
   },
+
   actions: {
     toggleAdmins: function () {
       this.toggleProperty('notification.admins');
       return false;
     },
+
     toggleStudents: function () {
       this.toggleProperty('notification.students');
       return false;
     },
+
     toggleDemonstrators: function () {
       this.toggleProperty('notification.demonstators');
       return false;
     },
+
     toggleEvaluators: function () {
       this.toggleProperty('notification.evaluators');
       return false;
     },
+
     toggleLogin: function () {
       this.toggleProperty('notification.onLogin');
       return false;
     },
+
     saveSettings() {
       this.get('notification').save().then(() => {
         if (this.get('goToView')) {
@@ -48,10 +55,12 @@ export default Ember.Component.extend({
       });
       return false;
     },
+
     closeSettings: function () {
       return this.sendAction('closeSettings');
     }
   },
+
   willDestroyElement() {
     this._super(...arguments);
     this.get('notification').rollbackAttributes();

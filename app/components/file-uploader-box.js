@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   session: Ember.inject.service('session'),
   tagName: '',
+
   actions: {
     upload(event) {
       const files = event.target.files;

@@ -1,0 +1,20 @@
+<div class="left">
+  <div class="title"><span>{{title}}</span></div>
+  <div class="submenu">
+    <ul>
+      {{#each subMenu as |menu|}}
+        <li>
+          {{#if menu.id}}
+            {{#link-to menu.route menu.id tagName="button" class="submenu-text" }}
+              <span>{{menu.description}}</span>
+            {{/link-to}}
+          {{else}}
+            {{#link-to menu.route tagName="button" class="submenu-text" }}
+              <span>{{menu.description}}</span>
+            {{/link-to}}
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 .main-content {
-
   .content {
     background-color: white;
 
@@ -9,56 +8,46 @@
       padding: 2em;
       box-sizing: border-box;
 
-      .evaluator {
-        input {
-          margin-left: -1%;
-        }
-
-        button {
-          margin-left: -1%;
-
-          &.button-with-distance {
-            margin-left: 1%;
-          }
-        }
-
-        a:not(.akep) {
-          margin-left: -1%;
-        }
-
-        a.akep {
-          margin-left: 1%;
-        }
-
-        .btn--toggle {
-          margin-left: -1%;
-        }
-
+      hr {
+        margin: 2% 0;
       }
 
       .demonstrator {
-        .demonstrator-group, .evaluation-student {
-          .deliverable, .laboratory-evaluation, .entry-test-evaluation {
-            border-top: solid black 1px;
+        .deliverable, .laboratory-evaluation, .entry-test-evaluation {
+          border-top: solid black 1px;
+          margin-top: 1%;
+
+          .finalized {
+            padding: 0;
+            color: red;
           }
 
-          a, input, button {
-            margin-left: -1%;
+          &.not-final {
+            border: solid red 1px;
+            padding: 0 1%;
           }
+        }
 
-          button {
-            &.btn--toggle {
-              display: block;
-            }
-            &.cancel {
-              margin-left: 1%;
-            }
+        h3 {
+          padding-left: 0;
+          padding-bottom: 0;
+        }
 
+        a, input, button {
+          &.no-margin-top {
+            margin-top: 0;
           }
+        }
 
-          .akep {
+        button {
+          &.cancel {
             margin-left: 1%;
           }
+
+        }
+
+        .akep {
+          margin-left: 1%;
         }
       }
 
@@ -77,13 +66,11 @@
       .directory {
         button {
           &.btn--toggle {
-            margin-left: -1%;
             display: block;
           }
         }
-        a, input, button {
-          margin-left: -1%;
 
+        a, input, button {
           &.cancel {
             margin-left: 1%;
           }
@@ -93,35 +80,38 @@
           border-bottom: solid black 1px;
           padding-bottom: 3%;
         }
+
         .directory-actions {
           border-top: solid black 1px;
           padding-top: 3%;
         }
+
         .directory-settings-student {
           .student-registration {
             padding-top: 3%;
+
             .sub-label {
               padding-left: 1.5%;
               margin-top: 1%;
             }
-            // border-top: solid black 1px;
+
             .student-event {
               padding: 0 0 2% 3%;
               border-bottom: solid black 1px;
 
               .change-time {
                 .time-input {
-                  margin-left: -1%;
                   display: inline-block;
-                  width: 280px;
+                  width: 300px;
+
                   input {
                     display: inline-block;
-                    max-width: 80px;
+                    max-width: 100px;
                     min-width: 20px;
                     margin: 0 0.5%;
 
                     &.time {
-                      max-width: 20px;
+                      max-width: 40px;
                     }
                   }
                 }
@@ -132,9 +122,9 @@
                 }
 
                 .success-box {
-            			display: inline-block;
-            			margin: 0 0 0  2%;
-            		}
+                  display: inline-block;
+                  margin: 0 0 0  2%;
+                }
               }
 
                 .definalize-actions {
@@ -154,6 +144,7 @@
                 i {
                   width: 20px;
                 }
+
                 &:before {
                   display: none;
                 }
@@ -177,17 +168,6 @@
         }
       }
 
-      .settings {
-        button {
-          &.btn--toggle {
-            margin-left: -1%;
-          }
-        }
-        input, button {
-          margin-left: -1%;
-        }
-      }
-
       .statistics {
         .statistics-content {
           margin-top: 1%;
@@ -201,60 +181,36 @@
 
         .deliverables {
           border-top: solid 1px black;
-          .deliverable {
-            &:not(:last-child){
+
+          .deliverable:not(:last-child){
             border-bottom: solid 1px black;
           }
-          }
-        }
-        .tagSelector{
-          margin-left: -1%;
         }
       }
 
-      .entry-test {
-        .entry-test-creator {
-          input, .save {
-            margin-left: -1%;
-
-          }
-        }
-      }
       .dashboard {
         .dashboard-creator{
           input{
             width: 18%;
           }
-          .labChooser{
-            margin-left: -1%;
-            margin-top: 1%;
-          }
-          .timeChooser{
-            margin-left: -1%;
-            margin-top: 1%;
-          }
-          .teacherChooser{
-            margin-left: -1%;
-            margin-top: 1%;
-          }
-          .roomChooser{
-            margin-left: -1%;
+
+          .labChooser,
+          .timeChooser,
+          .teacherChooser,
+          .roomChooser {
             margin-top: 1%;
           }
         }
       }
 
       .notification {
+
         .notification-creator {
-          input {
-            margin-left: -1%;
-          }
+
           .toggle-buttons {
-            button {
-              &.btn--toggle {
-                display: block;
-                margin-left: -1%;
-              }
+
+            button.btn--toggle {
+              display: block;
             }
           }
         }

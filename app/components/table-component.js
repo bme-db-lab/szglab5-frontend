@@ -9,16 +9,20 @@ export default Ember.Component.extend({
         return false;
       }
     },
+
     openSettings(rowData) {
       return this.sendAction('openSettings', rowData);
     },
+
     check(rowData) {
       rowData.meta.toggleProperty('checked');
       return false;
     },
+
     impersonate(rowData) {
       return this.sendAction('impersonate', rowData);
     },
+
     delete(rowData) {
       return this.sendAction('delete', rowData);
     }

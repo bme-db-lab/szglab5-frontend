@@ -9,6 +9,13 @@ export default Ember.Component.extend({
   redirect: null,
   session: Ember.inject.service('session'),
   currentUser: Ember.inject.service('session'),
+  showInputFields: false,
+
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.set('showInputFields', config.environment === 'development');
+  },
+
   actions: {
     removeError() {
       this.set('hasError', false);

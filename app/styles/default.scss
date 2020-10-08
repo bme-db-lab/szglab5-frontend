@@ -1,334 +1,340 @@
 * {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a {
-	font-family: 'Roboto Slab', sans-serif;
-	text-decoration: none;
-	outline: none;
+  font-family: 'Roboto Slab', sans-serif;
+  text-decoration: none;
+  outline: none;
 
-	&:hover {
-		text-decoration: none;
-		cursor: pointer;
-	}
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 .main-content {
-	.content {
-		@include box-shadow(0 0 25px #999);
-	}
+  .content {
+    @include box-shadow(0 0 25px #999);
+  }
 }
 
 
 div {
 	font-family: 'Roboto Slab', sans-serif;
+
 	&:focus {
 		outline: none;
 	}
 
-	&.normal-label {
-		font-weight: bold;
-		font-size: 18px;
-		color: #333;
-	}
-	&.sub-label {
-		font-size: 18px;
-		color: rgb(102,102,102);
-		font-weight: 500;
-	}
+  &.normal-label {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+  }
 
-	&.popup-label {
-		font-weight: bold;
-		font-size: 18px;
-		color: #333;
-	}
+  &.sub-label {
+    font-size: 18px;
+    color: rgb(102,102,102);
+    font-weight: 500;
+  }
 
-	&.title {
-		font-weight: 200;
-		font-size: 54px;
-		font-size: 2.91vw;
-		color: black;
-		text-align: left;
-		cursor: default;
+  &.popup-label {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+  }
 
-		&.news{
-			font-size: 20px;
-		}
-	}
+  &.title {
+    font-weight: 200;
+    font-size: 54px;
+    font-size: 2.91vw;
+    color: black;
+    text-align: left;
+    cursor: default;
 
-	&.text {
-		font-size: 16px;
-		color: black;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
-		text-align: left;
-		line-height: 1.25;
-		font-weight: 300;
-		padding-top: 2%;
+    &.news{
+      font-size: 20px;
+    }
+  }
 
-		span, &.label {
-			font-weight: 300;
-			color: rgb(102,102,102);
-			text-transform: lowercase;
-		}
-		span:after {
-			font-family: 'FontAwesome';
-			content: '\f105';
-			padding: 0 1%;
-			font-size: 14px;
-		}
-		button {
-			display: block;
-		}
+  &.text {
+    font-size: 16px;
+    color: black;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: left;
+    line-height: 1.25;
+    font-weight: 300;
 
-		&.long {
-			text-align: justify;
-      white-space: pre-line;
-			margin-left: 2%;
-		}
-	}
+    span, &.label {
+      font-weight: 300;
+      color: rgb(102,102,102);
+      text-transform: lowercase;
+    }
 
-	&.file-upload {
-		input {
-			color: black;
-			font-weight: 300;
-			margin-right: 3%;
-			display: inline-block;
-		}
-		a, .button {
-			margin-top: 0;
-		}
+    span:after {
+      font-family: 'FontAwesome';
+      content: '\f105';
+      padding: 0 1%;
+      font-size: 14px;
+    }
 
-		.success-box {
-			display: inline-block;
-			margin: 0 0 0  2%;
-		}
-	}
+    button:not(.btn--toggle) {
+      display: block;
+    }
+
+    &.long {
+      text-align: justify;
+          white-space: pre-line;
+      margin-left: 2%;
+    }
+  }
+
+  &.file-upload {
+    input {
+      color: black;
+      font-weight: 300;
+      margin-right: 3%;
+      display: inline-block;
+    }
+
+    a, .button {
+      margin-top: 0;
+    }
+
+    .success-box {
+      display: inline-block;
+      margin: 0 0 0  2%;
+    }
+  }
 }
 
 @media (max-width: $small-desktop-width) {
-	div {
-		&.title {
-			font-size: 54px;
-		}
-	}
+  div.title {
+    font-size: 54px;
+  }
 }
 
 
 
 p {
-	font-size: 16px;
-	color: black;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	text-align: justify;
-	line-height: 1.25;
-	font-weight: 300;
+  font-size: 16px;
+  color: black;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  text-align: justify;
+  line-height: 1.25;
+  font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Roboto Slab', sans-serif;
-	padding: 1em 1em 0.5em;
-	color: #333;
+  font-family: 'Roboto Slab', sans-serif;
+  padding: 1em 1em 0.5em;
+  color: #333;
 }
+
 h1 {
-		font-weight: 200;
-		color: black;
-		text-align: left;
+    font-weight: 200;
+    color: black;
+    text-align: left;
 }
+
 h4, h5, h6 {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 button, .button {
-	display: inline-block;
-	font-family: 'Roboto Slab', sans-serif;
-	font-size: 16px;
-	font-weight: 400;
-	line-height: 1.25;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	cursor: pointer;
-	border: 1px solid transparent;
-	padding: 0.5rem 1rem;
-	border-radius: 0;
-	color: white;
-	margin-top: 15px;
-	box-shadow: none;
-	background: $buttonOkActive;
-	outline: none;
+  display: inline-block;
+  font-family: 'Roboto Slab', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  color: white;
+  box-shadow: none;
+  background: $buttonOkActive;
+  outline: none;
 
-	&:active {
-		box-shadow: none;
-	}
+  &.with-margin {
+    margin-top: 1%;
+  }
 
-	&.active {
-		box-shadow: none;
-	}
+  &:active {
+    box-shadow: none;
+  }
 
-	&:hover {
-		box-shadow: none;
-		background: $buttonOkHover;
-	}
+  &.active {
+    box-shadow: none;
+  }
 
-	&.cancel {
-		box-shadow: none;
-		background: $buttonCancelActive;
+  &:hover {
+    box-shadow: none;
+    background: $buttonOkHover;
+  }
 
-		&:hover {
-			box-shadow: none;
-			background: $buttonCancelHover;
-		}
-	}
+  &.cancel {
+    box-shadow: none;
+    background: $buttonCancelActive;
 
-	&:disabled {
-		cursor: not-allowed;
-		background: $buttonDisabled;
-	}
+    &:hover {
+      box-shadow: none;
+      background: $buttonCancelHover;
+    }
+  }
 
-	&.btn--toggle {
-		background: none;
-		border: none;
-		margin: 1% 1% 0 0;
-		text-align: left;
-		color: black;
-		box-shadow: none;
-		font-weight: normal;
-		padding-left: 0;
-		padding-right: 0;
+  &:disabled {
+    cursor: not-allowed;
+    background: $buttonDisabled;
+  }
 
-		i {
-			width: 20px;
-		}
-		&:before {
-			display: none;
-		}
-	}
+  &.btn--toggle {
+    background: none;
+    border: none;
+    margin: 0 1% 0 0;
+    text-align: left;
+    color: black;
+    box-shadow: none;
+    font-weight: normal;
+    padding: 0;
+
+    i {
+      width: 20px;
+    }
+
+    &:before {
+      display: none;
+    }
+  }
 }
 
 label {
-	font-family: 'Roboto Slab', sans-serif;
-	font-weight: 300;
-	font-size: 16px;
-	color: rgb(102,102,102);
-	text-transform: lowercase;
+  font-family: 'Roboto Slab', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: rgb(102,102,102);
+  text-transform: lowercase;
 }
 
 input {
-	font-family: 'Roboto Slab', sans-serif;
-	display: block;
-	min-width: 45%;
-	max-width: calc(100% - 1.5rem);
-	padding: 0.5rem 0.75rem;
-	font-size: 16px;
-	line-height: 1.25;
-	color: black;
-	background-color: transparent;
-	background-image: none;
-	border: 1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 0.25rem;
-	resize: none;
-	outline: none;
-	transition: all 0.5s;
+  font-family: 'Roboto Slab', sans-serif;
+  display: block;
+  min-width: 45%;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.5rem 0.75rem;
+  font-size: 16px;
+  line-height: 1.25;
+  color: black;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  resize: none;
+  outline: none;
+  transition: all 0.5s;
 
-	&:disabled {
-		border-color: transparent;
-	}
+  &:disabled {
+    border-color: transparent;
+  }
 
-	&:focus {
-		border-color: $buttonOkActive;
-	}
+  &:focus {
+    border-color: $buttonOkActive;
+  }
 }
 
 textarea {
-	font-family: 'Roboto Slab', sans-serif;
-	margin-left: -1%;
-	display: block;
-	padding: 0.5rem 0.75rem;
-	font-size: 16px;
-	line-height: 1.25;
-	color: black;
-	background-color: white;
-	background-image: none;
-	background-clip: padding-box;
-	border: 1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 0.25rem;
-	width: 90%;
-	resize: vertical;
-	outline: none;
-	transition: all 0.5s;
+  font-family: 'Roboto Slab', sans-serif;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  font-size: 16px;
+  line-height: 1.25;
+  color: black;
+  background-color: white;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  width: 90%;
+  resize: vertical;
+  outline: none;
+  transition: all 0.5s;
 
-	&:focus {
-		border-color: $buttonOkActive;
-	}
+  &:focus {
+    border-color: $buttonOkActive;
+  }
 
 
-	&:disabled {
-		border-color: transparent;
-		resize: none;
-	}
+  &:disabled {
+    border-color: transparent;
+    resize: none;
+  }
 }
 
 body {
-	font-family: 'Roboto Slab', sans-serif;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	background: $background-color;
+  font-family: 'Roboto Slab', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $background-color;
 }
 
 html {
-	font-family: 'Roboto Slab', sans-serif;
-	background: $background-color;
+  font-family: 'Roboto Slab', sans-serif;
+  background: $background-color;
 }
 
 .error-box {
-	color: $error-color;
-	// background-color: $error-background;
-	border: $error-color solid 1px;
-	font-weight: 300;
-	padding: 0.4em;
-	margin: 0.6em 0;
+  color: $error-color;
+  border: $error-color solid 1px;
+  font-weight: 300;
+  padding: 0.4em;
+  margin: 0.6em 0;
 }
 
 .success-box {
-	color: $success-color;
-	// background-color: $success-background;
-	border: $success-color solid 1px;
-	font-weight: 300;
-	padding: 0.4em;
-	margin: 0.6em 0;
+  color: $success-color;
+  border: $success-color solid 1px;
+  font-weight: 300;
+  padding: 0.4em;
+  margin: 0.6em 0;
 }
 
 .small {
-	color: gray;
-	font-size: 0.7em;
+  color: gray;
+  font-size: 0.7em;
 }
 
 .breadcrumb {
-	display: flex;
-	align-items: center;
-	button {
-		margin: 0 1em 0 0;
-	}
+  display: flex;
+  align-items: center;
+  button {
+    margin: 0 1em 0 0;
+  }
 }
 
 .pikaday-input {
-	margin-top: 1%;
+  margin-top: 1%;
 }
 
 .pika-lendar {
 
-	button {
-		background-color: #f5f5f5;
-		&:hover {
-			background-color: #ff8000;
-		}
-		&.pika-prev, &.pika-next{
-			background-color: #f9f9f9;
-		}
-	}
+  button {
+    background-color: #f5f5f5;
+
+    &:hover {
+      background-color: #ff8000;
+    }
+
+    &.pika-prev, &.pika-next{
+      background-color: #f9f9f9;
+    }
+  }
 
 }

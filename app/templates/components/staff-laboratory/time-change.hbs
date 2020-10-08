@@ -1,0 +1,22 @@
+<div class="text">
+  <span class="label">Feltöltés ideje</span>
+  {{dateformat lastSubmittedDate}}
+</div>
+<div class="text label">Feltöltés idejének megváltoztatása</div>
+<div class="time-input">
+  {{pikaday-input format="YYYY-MM-DD" placeholder="Select a date" value=date onSelection=(action (mut date))}}
+    {{input type="number" value=hours placeholder="hours" class='time'}} :
+    {{input type="number" value=minutes placeholder="minutes" class='time'}}
+</div>
+<button type="button" {{action 'save'}}>Mentés</button>
+{{#if success}}
+  <div class="success-box">
+    Sikeres mentés
+  </div>
+{{else}}
+  {{#unless (or (eq error '') (eq error undefined))}}
+    <div class="error-box">
+      {{error}}
+    </div>
+  {{/unless}}
+{{/if}}

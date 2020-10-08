@@ -1,0 +1,146 @@
+{{outlet}}
+<div class='text'>
+  <span class='label'>Név</span> {{model.StudentRegistration.User.displayName}}
+</div>
+
+<div class="text">
+  <span class='label'>Neptun</span> {{model.StudentRegistration.User.neptun}}
+</div>
+
+<div class="text">
+  <span class='label'>e-mail</span>
+  {{#if model.StudentRegistration.User.email}}
+    {{model.StudentRegistration.User.email}}
+  {{else}}
+    Nincs e-mail megadva.
+  {{/if}}
+</div>
+
+<div class="text">
+  <span class='label'>Feladattípus</span> {{model.ExerciseSheet.ExerciseType.shortName}}
+</div>
+
+<div class="text">
+  <span class='label'>Időpont</span> {{model.formattedDate}}
+</div>
+
+<div class="text">
+  <span class='label'>Határidő</span> {{dateformat (await model.eventDeadline)}}
+</div>
+
+<div class="entry-test-evaluation">
+  <div class='text label'>Beugró érdemjegye</div>
+  {{input type="number" min="1" max="5" value=model.firstEntryTest.grade placeholder="beugró érdemjegy" disabled=model.firstEntryTest.finalized}}
+
+  <div class='text'>
+    <span class='label'>Beugró véglegesítése</span>
+    <button type="button" class="btn--toggle {{if model.firstEntryTest.finalized 'active'}}" {{action 'toggleFinalized' model.firstEntryTest}}>
+      {{#if model.firstEntryTest.finalized}}
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        {{else}}
+        <i class="fa fa-square-o" aria-hidden="true"></i>
+      {{/if}}
+      Véglegesítve
+    </button>
+  </div>
+</div>
+
+{{#each model.correctableDeliverables as |deliverable|}}
+  <div class="deliverable {{if deliverable.finalized 'final' "not-final"}}">
+
+    <h3 class="finalized">
+      {{#if deliverable.finalized}}
+        Az értékelés végleges.
+      {{else}}
+        Az értékelés még <em>nincs</em> véglegesítve.
+      {{/if}}
+    </h3>
+
+    {{#if deliverable.grade}}
+      <div class="text" id="afterreportgrade">
+        <span class='label'><strong>{{deliverable.description}}</strong> érdemjegy</span> {{deliverable.grade}} ({{deliverable.CorrectorName}} - {{deliverable.CorrectorEmail}})
+      </div>
+
+      {{#if deliverable.comment}}
+        <div class='text label'><strong>{{deliverable.description}}</strong> megjegyzés</div>
+        <div class="text long">
+          {{deliverable.comment}}
+        </div>
+      {{else}}
+        <div class="text">
+          <span class='label'><strong>{{deliverable.description}}</strong> megjegyzés</span> Nincs megjegyzés.
+        </div>
+      {{/if}}
+
+      <div class="text">
+        <span class='label'><strong>{{deliverable.description}}</strong> IMSc pont</span>
+        {{#if deliverable.imsc}}
+          {{deliverable.imsc}} pont
+        {{else}}
+          Nincs IMSc pont hozzáadva.
+        {{/if}}
+      </div>
+    {{else}}
+      <div class="text">
+        <span class='label'>A <strong>{{deliverable.description}}</strong> eredménye</span> A <strong>{{deliverable.description}}</strong> még nincs értékelve.
+      </div>
+    {{/if}}
+
+
+    <div class="text label">Fájl</div>
+    {{#if deliverable.uploaded}}
+      <a class="button" {{action 'download' deliverable.downloadLink}}>Letöltés</a>
+      <a class="button akep" target="_blank" href="https://ertekelo-dev.db.bme.hu/#AKEPView/{{model.StudentRegistration.User.neptun}}/{{model.EventTemplate.ExerciseCategory.type}}">AKÉP</a>
+      <div class="text">
+        <span class='label'>Feltöltés ideje</span>
+        {{dateformat deliverable.lastSubmittedDate}}
+      </div>
+      {{#if deliverable.isDelayed}}
+        <div class="text">
+          <span class='label'>Késés</span>
+           {{deliverable.delayCalculation}} óra
+        </div>
+      {{/if}}
+    {{else}}
+      <div class="text">
+        Jelenleg nincs feltöltve
+        {{#if deliverable.isUploadable}}, de a hallgató még feltölthet{{/if}}.
+      </div>
+    {{/if}}
+  </div>
+
+{{/each}}
+
+<div class="laboratory-evaluation">
+  <div class='text label'>{{model.EventTemplate.name}} érdemjegy</div>
+  {{input type="number" min="1" max="5" value=model.grade placeholder="érdemjegy" disabled=model.finalized }}
+
+
+  <div class='text label'>{{model.EventTemplate.name}} IMSc</div>
+  {{input type="number" value=model.imsc placeholder="IMSc" disabled=model.finalized }}
+
+  <div class='text'>
+    <span class='label'>{{model.EventTemplate.name}} véglegesítése</span>
+    <button type="button" class="btn--toggle {{if model.finalized 'active'}}" {{action 'toggleFinalized' model}}>
+      {{#if model.finalized}}
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        {{else}}
+        <i class="fa fa-square-o" aria-hidden="true"></i>
+      {{/if}}
+      Véglegesítve
+    </button>
+  </div>
+</div>
+
+<button type="button" {{action 'save'}}>Mentés</button>
+{{#if success}}
+  <div class="success-box">
+    Sikeres mentés
+  </div>
+{{else}}
+  {{#unless (or (eq error '') (eq error undefined))}}
+    <div class="error-box">
+      {{error}}
+    </div>
+  {{/unless}}
+{{/if}}

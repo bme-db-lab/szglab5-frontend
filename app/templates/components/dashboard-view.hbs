@@ -1,8 +1,0 @@
-<div class="dashboard-list">
-  {{#unless showSettings}}
-    {{table-component header=header body=body withDelete=true withSettings=true openSettings=(action 'openSettings')}}
-  {{/unless}}
-  {{#if showSettings}}
-    {{dashboard-creator edit=true closeSettings=(action "closeSettings")}}
-  {{/if}}
-</div>

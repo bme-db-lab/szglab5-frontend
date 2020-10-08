@@ -1,16 +1,8 @@
 <div class="content demonstrator">
-  {{left-menu title="Demonstrátor" currentView=currentView goToView=(action 'goToView') subMenu=subMenu}}
+  {{menus/left-menu-routes title="Demonstrátor" subMenu=subMenu}}
   <div class="right">
     <div class="demonstrator">
-      {{#unless currentView}}
-        <div class='text'>Válassz egy laborfoglalkozást a bal oldali menüből!</div>
-      {{else}}
-        {{#unless selectedEvent}}
-          {{demonstrator-group currentEventTemplate=currentView evaluateEvent=(action 'evaluateEvent')}}
-        {{else}}
-          {{demonstrator-student event=selectedEvent mode='demonstrator' cancel=(action 'cancel')}}
-        {{/unless}}
-      {{/unless}}
+      {{outlet}}
     </div>
   </div>
 </div>

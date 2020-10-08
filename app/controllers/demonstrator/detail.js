@@ -31,7 +31,8 @@ export default Ember.Controller.extend({
           });
 
           const sortedDates = eventDateByCourseCode.sort(function(a, b) {
-            return moment(a.date).diff(moment(b.date));
+            const diff = moment(a.date).diff(moment(b.date));
+            return diff === 0 ? a.courseCode > b.courseCode : diff;
           })
 
           let finalEventsByCourseCode = {}

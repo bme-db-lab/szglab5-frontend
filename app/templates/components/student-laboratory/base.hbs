@@ -13,7 +13,7 @@
     </div>
 
     {{#if result.handoutUrl}}
-      <div class="text label">Handout document</div>
+      <div class="text label">Exercise sheet</div>
       <button {{action 'downloadHandout'}}>Download</button>
 
       {{#if handoutDownloadError}}
@@ -21,8 +21,8 @@
       {{/if}}
     {{else}}
       <div class="text">
-        <span class="label">Handout document</span>
-        The handout document will be available when your lesson starts.
+        <span class="label">Exercise sheet</span>
+        Will be available when your class starts.
       </div>
     {{/if}}
 

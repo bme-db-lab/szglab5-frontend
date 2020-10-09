@@ -14,7 +14,11 @@
 
     {{#if result.handoutUrl}}
       <div class="text label">Exercise sheet</div>
-      <button {{action 'downloadHandout'}}>Download</button>
+      <button {{action 'downloadHandout'}} disabled={{handoutDownloadIsLoading}}>Download</button>
+
+      {{#if handoutDownloadIsLoading}}
+        <i class="fa fa-cog fa-fw fa-spin"></i>
+      {{/if}}
 
       {{#if handoutDownloadError}}
         <div class="error-box">{{handoutDownloadError}}</div>

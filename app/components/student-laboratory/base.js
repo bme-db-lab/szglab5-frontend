@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
   handoutDownloadError: null,
+  handoutDownloadIsLoading: false,
 
   exerciseShortName: Ember.computed('result', 'result.ExerciseSheet', function () {
     if (this.get('result') && this.get('result.ExerciseSheet')) {
@@ -53,6 +54,7 @@ export default Ember.Component.extend({
 
       if (handoutUrl) {
         const filename = handoutUrl.replace(new RegExp(/\/events\/[\d]+\/get-handout\//g), '');
+        this.set('handoutDownloadIsLoading', true);
 
         fetch(env.backendUrl + handoutUrl, {
             headers: {
@@ -68,13 +70,16 @@ export default Ember.Component.extend({
           response.json().then((res) => {
             if (res.errors && res.errors.length > 0 && res.errors[0].title) {
               this.set('handoutDownloadError', res.errors[0].title);
+              this.set('handoutDownloadIsLoading', false);
               return;
             }
             this.set('handoutDownloadError', "Something went wrong while trying to download the handout file.");
+            this.set('handoutDownloadIsLoading', false);
           })
           .catch((error) => {
             console.error(error);
             this.set('handoutDownloadError', "Something went wrong while trying to download the handout file.");
+            this.set('handoutDownloadIsLoading', false);
           })
         }).then((blob) => {
             if (blob) {
@@ -96,6 +101,7 @@ export default Ember.Component.extend({
 
               a.addEventListener('click', clickHandler, false);
               a.click();
+              this.set('handoutDownloadIsLoading', false);
             }
           });
       }

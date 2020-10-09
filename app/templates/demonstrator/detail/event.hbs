@@ -115,6 +115,8 @@
   <div class='text label'>{{model.EventTemplate.name}} érdemjegy</div>
   {{input type="number" min="1" max="5" value=model.grade placeholder="érdemjegy" disabled=model.finalized }}
 
+  <div class='text label'>{{model.EventTemplate.name}} megjegyzés</div>
+  {{textarea value=model.comment cols="9" rows="9" placeholder="megjegyzés" disabled=model.finalized }}
 
   <div class='text label'>{{model.EventTemplate.name}} IMSc</div>
   {{input type="number" value=model.imsc placeholder="IMSc" disabled=model.finalized }}

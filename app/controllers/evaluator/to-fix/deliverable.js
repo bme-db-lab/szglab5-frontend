@@ -9,6 +9,8 @@ export default Ember.Controller.extend({
     eventTemplate: Ember.computed.alias("event.EventTemplate"),
     exerciseCategory: Ember.computed.alias("eventTemplate.ExerciseCategory"),
 
+    session: Ember.inject.service('session'),
+
     actions: {
         download() {
             const form = document.createElement('form');

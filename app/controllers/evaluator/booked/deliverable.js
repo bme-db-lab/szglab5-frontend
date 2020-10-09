@@ -7,6 +7,8 @@ export default Ember.Controller.extend({
     student: Ember.computed.alias("event.StudentRegistration.User"),
     demonstrator: Ember.computed.alias("event.Demonstrator"),
 
+    session: Ember.inject.service('session'),
+
     actions: {
         download() {
             const form = document.createElement('form');

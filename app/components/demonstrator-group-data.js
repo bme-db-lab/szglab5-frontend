@@ -34,15 +34,7 @@ export default Ember.Component.extend({
       return 1;
     }
 
-    if (lhsAttempt === rhsAttempt) {
-      if (lhsName < rhsName) {
-        return -1;
-      }
-      if (lhsName > rhsName) {
-        return 1;
-      }
-    }
-    return 0;
+    return lhsName.localeCompare(rhsName);
   },
 
   eventGroup: Ember.computed('events', function() {

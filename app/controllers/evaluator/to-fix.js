@@ -2,24 +2,7 @@ import Ember from 'ember';
 
 
 export default Ember.Controller.extend({
-    header: [
-        'Neptun',
-        'Név',
-        'Feltöltés ideje',
-        'Határidő',
-        'Feladattípus',
-        'Labor kód',
-        'Beadandó'
-    ],
-    rowIndecies: [
-        'Event.StudentRegistration.User.neptun',
-        'Event.StudentRegistration.User.displayName',
-        'uploadedAt',
-        'deadlineFormatted',
-        'Event.ExerciseSheet.ExerciseType.shortName',
-        'DeliverableTemplate.EventTemplate.ExerciseCategory.type',
-        'DeliverableTemplate.description'
-    ],
+
 
     myExerciseTypes: Ember.computed('model.user.ExerciseTypes', 'model.user.ExerciseTypes.[]', 'model.user.ExerciseTypes.@each', function () {
         return this.get('model.user.ExerciseTypes');
@@ -88,19 +71,8 @@ export default Ember.Controller.extend({
         },
 
         changeDeliverable(deliverable) {
-          this.set('success', false);
-          this.set('error', '');
           this.transitionToRoute("evaluator.to-fix.deliverable", deliverable.get('id'));
           return false;
-        },
-
-        // resetPage
-        resetPage() {
-            this.set('page', 0);
-            this.set('filteredDeliverablesSelect', []);
-            this.set('filteredDeliverables', []);
-            this.actions.loadFilteredDeliverables.apply(this);
-            return false;
         }
     }
 });

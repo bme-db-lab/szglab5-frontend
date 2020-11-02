@@ -6,10 +6,10 @@ export default Ember.Controller.extend({
         return new RSVP.Promise((resolve, reject) => {
           this.get('store').query('deliverable', {
             filter: {
-              isCorrector: true,
-              isFile: true,
-              finalized: false
-            }
+                isAttached: true,
+                isFile: true,
+                finalized: true
+              }
           }).then(deliverables => {
             let separatedDeliverablesByExerciseType = {}
             let categoryById = []

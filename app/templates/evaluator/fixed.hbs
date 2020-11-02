@@ -1,5 +1,5 @@
 {{#each-in (await separatedDeliverablesByExerciseType) as |exerciseCategory deliverables|}}
-  {{evaluator/exercise-booked-group-data exerciseCategory=exerciseCategory body=deliverables changeDeliverable=(action 'changeDeliverable') showHighlight=true}}
+  {{evaluator/exercise-booked-group-data exerciseCategory=exerciseCategory body=deliverables changeDeliverable=(action 'changeDeliverable') showHighlight=false}}
 
 {{else}}
     <div class="text">Nincs megjeleníthető beadandó.</div>

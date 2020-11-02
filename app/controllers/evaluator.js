@@ -7,7 +7,10 @@ export default Ember.Controller.extend({
       description: 'Javítandó kiválasztása'
     }, {
       route: 'evaluator.booked',
-      description: 'Javítás és kijavított feladatok'
+      description: 'Javítás'
+    }, {
+      route: 'evaluator.fixed',
+      description: 'Kijavított feladatok'
     }
   ]
 });

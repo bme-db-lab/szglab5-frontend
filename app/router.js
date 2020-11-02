@@ -29,6 +29,9 @@ Router.map(function() {
       this.route('deliverable', { path: "/:id" });
       this.route('no-deliverable');
     });
+    this.route('fixed', function() {
+      this.route('deliverable', { path: "/:id" });
+    });
   });
   this.route('event-templates');
   this.route('login');

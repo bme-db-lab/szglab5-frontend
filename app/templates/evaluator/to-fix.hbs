@@ -1,1 +1,4 @@
-{{evaluator/exercise-group-data body=model.deliverables changeDeliverable=(action 'changeDeliverable')}}
+
+{{#each-in (await separatedDeliverablesByExerciseType) as |exerciseCategory deliverables|}}
+  {{evaluator/exercise-group-data exerciseCategory=exerciseCategory body=deliverables changeDeliverable=(action 'changeDeliverable')}}
+{{/each-in}}

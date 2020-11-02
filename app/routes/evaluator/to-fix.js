@@ -15,15 +15,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ErrorRouteMixin, Corr
         filter: {
           asCorrector: true
         }
-      }),
-      deliverables: this.get('store').query('deliverable', {
-        filter: {
-          isFree: true,
-          isAttached: true,
-          isOver: true,
-          isFile: true,
-          isUploaded: true
-        }
       })
     })
   }

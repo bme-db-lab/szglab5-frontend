@@ -1,11 +1,41 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 
 export default Ember.Controller.extend({
-
-
     myExerciseTypes: Ember.computed('model.user.ExerciseTypes', 'model.user.ExerciseTypes.[]', 'model.user.ExerciseTypes.@each', function () {
         return this.get('model.user.ExerciseTypes');
+    }),
+
+    separatedDeliverablesByExerciseType: Ember.computed('model', function () {
+      return new RSVP.Promise((resolve, reject) => {
+        this.get('store').query('deliverable', {
+          filter: {
+            isFree: true,
+            isAttached: true,
+            isOver: true,
+            isFile: true,
+            isUploaded: true
+          }
+        }).then(deliverables => {
+          let separatedDeliverablesByExerciseType = {}
+
+          deliverables.map(deliverable => {
+            const exerciseCategoryType = deliverable.get('exerciseCategoryType');
+            if(!Object.keys(separatedDeliverablesByExerciseType).includes(exerciseCategoryType)) {
+              separatedDeliverablesByExerciseType[exerciseCategoryType] = [];
+            }
+
+            separatedDeliverablesByExerciseType[exerciseCategoryType].push(deliverable);
+            return deliverable;
+          });
+
+          resolve(separatedDeliverablesByExerciseType);
+        }, err => {
+          console.error(err);
+          reject(err);
+        });
+      });
     }),
 
 
@@ -33,42 +63,6 @@ export default Ember.Controller.extend({
         },
 
 
-        // load deliverables by filter
-        loadFilteredDeliverables() {
-          const filter = {
-            isFree: true,
-            isAttached: true,
-            isOver: true,
-            isFile: true,
-            isUploaded: true
-          };
-          if (this.get('selectedExerciseType')) {
-            filter.exerciseTypeId = this.get('selectedExerciseType.id');
-          }
-          if (this.get('selectedEventTemplate')) {
-            filter.eventTemplateId = this.get('selectedEventTemplate.id');
-          }
-          if (this.get('selectedDeliverableTemplate')) {
-            filter.deliverableTemplateId = this.get('selectedDeliverableTemplate.id');
-          }
-          const pageSize = 50;
-          this.get('store').query('deliverable', {
-            filter: filter,
-            offset: pageSize * this.get('page'),
-            limit: pageSize
-          }).then(deliverables => {
-            deliverables.forEach(x => {
-              x.set('uploadedAt', x.get('uploaded') ? dateformat([x.get('lastSubmittedDate')]) : 'No');
-              x.set('deadlineFormatted', dateformat([x.get('deadline')]));
-            });
-            this.set('filteredDeliverablesSelect', [
-              ...this.get('filteredDeliverablesSelect'),
-              ...deliverables.map(x => x)
-            ]);
-            this.set('page', this.get('page') + 1);
-          });
-          return false;
-        },
 
         changeDeliverable(deliverable) {
           this.transitionToRoute("evaluator.to-fix.deliverable", deliverable.get('id'));

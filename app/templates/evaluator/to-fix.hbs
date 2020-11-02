@@ -1,4 +1,6 @@
 
 {{#each-in (await separatedDeliverablesByExerciseType) as |exerciseCategory deliverables|}}
   {{evaluator/exercise-group-data exerciseCategory=exerciseCategory body=deliverables changeDeliverable=(action 'changeDeliverable') showHighlight=true}}
+{{else}}
+    <div class="text">Nincs megjeleníthető beadandó.</div>
 {{/each-in}}

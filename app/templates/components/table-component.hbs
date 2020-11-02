@@ -26,7 +26,7 @@
     </thead>
     <tbody>
       {{#each body as |row number|}}
-        <tr class='normal{{if clickable " clickable"}}' {{action 'onRowClick' row}}>
+        <tr class='normal{{if clickable " clickable"}} {{if showHighlight row.tableHighlight}}' {{action 'onRowClick' row}}>
           {{#unless withoutNumber}}
             <th scope='row'>{{add number 1}}</th>
           {{/unless}}

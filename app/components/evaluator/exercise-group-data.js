@@ -18,6 +18,8 @@ export default Ember.Component.extend({
         'DeliverableTemplate.description'
     ],
 
+    showHighlight: false,
+
     actions: {
         changeDeliverable(event) {
           return this.sendAction('changeDeliverable', event);

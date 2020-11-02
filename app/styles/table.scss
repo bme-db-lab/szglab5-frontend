@@ -88,6 +88,17 @@ table {
           text-align: left;
         }
       }
+
+      &.highlight {
+        &-heavy {
+          color: rgba(255, 0, 0, 0.7);
+          font-weight: bold;
+        }
+
+        &-medium {
+          color: rgba(255, 0, 0, 0.7);
+        }
+      }
     }
   }
 

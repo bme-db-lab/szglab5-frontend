@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  showHighlight: false,
+
   actions: {
     onRowClick(rowData) {
       if (this.get('clickable')) {

@@ -75,5 +75,18 @@ export default DS.Model.extend({
 
   exerciseCategory: Ember.computed('DeliverableTemplate', function() {
     return this.get('DeliverableTemplate.exerciseCategory');
-  })
+  }),
+
+  tableHighlight: Ember.computed('uploadedAt', function () {
+    const uploadedAt = moment(this.get('uploadedAt'))
+    const now = moment()
+    const diff = now.diff(uploadedAt, 'days')
+
+    if(diff > 5) {
+      return "highlight-heavy";
+    } else if(diff >= 3) {
+      return "highlight-medium";
+    }
+    return "";
+  }),
 });

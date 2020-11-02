@@ -73,7 +73,7 @@ export default DS.Model.extend({
     return dateformat([this.get('deadline')]);
   }),
 
-  exerciseCategoryType: Ember.computed('DeliverableTemplate', function() {
-    return this.get('DeliverableTemplate.exerciseCategoryType');
+  exerciseCategory: Ember.computed('DeliverableTemplate', function() {
+    return this.get('DeliverableTemplate.exerciseCategory');
   })
 });

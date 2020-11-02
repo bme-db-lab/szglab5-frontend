@@ -29,7 +29,7 @@ export default DS.Model.extend({
     });
   }),
 
-  exerciseCategoryType: Ember.computed('ExerciseCategory', 'ExerciseCategory.type', function() {
-    return this.get('ExerciseCategory.type');
+  exerciseCategory: Ember.computed('ExerciseCategory', function() {
+    return this.get('ExerciseCategory');
   })
 });

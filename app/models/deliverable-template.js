@@ -8,7 +8,7 @@ export default DS.Model.extend({
   Deliverables: DS.hasMany('deliverable', { inverse: 'DeliverableTemplate' }),
   EventTemplate: DS.belongsTo('eventTemplate', { inverse: 'DeliverableTemplates' }),
 
-  exerciseCategoryType: Ember.computed('EventTemplate', function() {
-    return this.get('EventTemplate.exerciseCategoryType');
+  exerciseCategory: Ember.computed('EventTemplate', function() {
+    return this.get('EventTemplate.exerciseCategory');
   })
 });

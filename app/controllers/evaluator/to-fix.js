@@ -21,7 +21,8 @@ export default Ember.Controller.extend({
           let separatedDeliverablesByExerciseType = {}
 
           deliverables.map(deliverable => {
-            const exerciseCategoryType = deliverable.get('exerciseCategoryType');
+            const exerciseCategory = deliverable.get('exerciseCategory');
+            const exerciseCategoryType = exerciseCategory.get('type');
             if(!Object.keys(separatedDeliverablesByExerciseType).includes(exerciseCategoryType)) {
               separatedDeliverablesByExerciseType[exerciseCategoryType] = [];
             }

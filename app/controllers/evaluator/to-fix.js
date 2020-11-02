@@ -1,11 +1,7 @@
 import Ember from 'ember';
-import { dateformat } from '../../helpers/dateformat';
+
 
 export default Ember.Controller.extend({
-    queryParams: ['page', 'pageSize'],
-    page: 0,
-    pageSize: 50,
-
     header: [
         'Neptun',
         'Név',

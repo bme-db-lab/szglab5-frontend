@@ -2,6 +2,10 @@ import Ember from 'ember';
 import { dateformat } from '../../helpers/dateformat';
 
 export default Ember.Controller.extend({
+    queryParams: ['page', 'pageSize'],
+    page: 0,
+    pageSize: 50,
+
     header: [
         'Neptun',
         'Név',
@@ -25,7 +29,7 @@ export default Ember.Controller.extend({
         return this.get('model.user.ExerciseTypes');
     }),
 
-    page: 0,
+
     filteredDeliverables: [],
 
     actions: {

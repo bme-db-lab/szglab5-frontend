@@ -6,7 +6,16 @@ import CorrectorAuthenticatedRouteMixin from '../../mixins/corrector-authenticat
 import jwt_decode from 'npm:jwt-decode';
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, ErrorRouteMixin, CorrectorAuthenticatedRouteMixin, {
-  model() {
+  queryParams: {
+    page: {
+      refreshModel: true
+    },
+    pageSize: {
+      refreshModel: true
+    }
+  },
+
+  model(queryParams) {
     var token = this.get('session.data.authenticated.token');
     var userData = jwt_decode(token);
     return RSVP.hash({
@@ -15,6 +24,17 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ErrorRouteMixin, Corr
         filter: {
           asCorrector: true
         }
+      }),
+      deliverables: this.get('store').query('deliverable', {
+        filter: {
+          isFree: true,
+          isAttached: true,
+          isOver: true,
+          isFile: true,
+          isUploaded: true
+        },
+        offset: queryParams.pageSize * queryParams.page,
+        limit: queryParams.pageSize
       })
     });
   }

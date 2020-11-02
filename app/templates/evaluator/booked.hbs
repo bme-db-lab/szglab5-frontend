@@ -1,18 +1,11 @@
-<div class="text label">Labor kód:</div>
-{{#power-select options=model.eventTemplates selected=selectedEventTemplate onchange=(action "changeEventTemplate") as |eT|}}
-    {{eT.ExerciseCategory.type}}
-{{/power-select}}
-
 <div class="text label">Szűrés:</div>
 {{#power-select options=deliverableFilters selected=selectedDeliverableFilter onchange=(action "changeDeliverableFilter") as |filter|}}
     {{filter.value}}
 {{/power-select}}
 
-{{#if filteredDeliverables}}
-    {{table-component header=header body=filteredDeliverables rowIndecies=rowIndecies clickable=true changeEvent=(action 'changeDeliverable') onClickRowAction='changeEvent'}}
+{{#each-in (await separatedDeliverablesByExerciseType) as |exerciseCategory deliverables|}}
+  {{evaluator/exercise-booked-group-data exerciseCategory=exerciseCategory body=deliverables changeDeliverable=(action 'changeDeliverable') showHighlight=selectedDeliverableFilter.showHighlight}}
 
-    <button class="button with-margin" {{action 'loadFilteredDeliverables'}}>Továbbiak betöltése</button>
 {{else}}
     <div class="text">Nincs megjeleníthető beadandó.</div>
-    <button class="button with-margin" {{action 'changeDeliverableFilter' selectedDeliverableFilter}}>Frissítés</button>
-{{/if}}
+{{/each-in}}

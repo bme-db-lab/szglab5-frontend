@@ -1,34 +1,7 @@
 import Ember from 'ember';
-import { dateformat } from '../../helpers/dateformat';
+import RSVP from 'rsvp';
 
 export default Ember.Controller.extend({
-    header: [
-        'Neptun',
-        'Név',
-        'Feltöltés ideje',
-        'Határidő',
-        'Javító',
-        'Feladatkód',
-        'Labor kód',
-        'Beadandó típusa',
-        'Kijavítva',
-        'Érdemjegy',
-        'IMSc'
-      ],
-    rowIndecies: [
-        'Event.StudentRegistration.User.neptun',
-        'Event.StudentRegistration.User.displayName',
-        'uploadedAt',
-        'deadlineFormatted',
-        'CorrectorName',
-        'Event.ExerciseSheet.ExerciseType.shortName',
-        'DeliverableTemplate.EventTemplate.ExerciseCategory.type',
-        'DeliverableTemplate.description',
-        'finalized',
-        'grade',
-        'imsc'
-      ],
-
     deliverableFilters: [
         {
           filter: {
@@ -36,6 +9,7 @@ export default Ember.Controller.extend({
             isFile: true,
             finalized: false
           },
+          showHighlight: true,
           value: 'Javításra vár'
         },
         {
@@ -44,76 +18,61 @@ export default Ember.Controller.extend({
             isFile: true,
             finalized: true
           },
+          showHighlight: false,
           value: 'Feladattípusaimhoz tartozó kijavított feladatok'
         }
       ],
 
-    page: 0,
-    filteredDeliverablesSelect: [],
-    filteredDeliverables: [],
-
-    selectedExerciseType: null,
-    selectedEventTemplate: null,
-    selectedDeliverableTemplate: null,
     selectedDeliverableFilter: Ember.computed(function() {
         return this.deliverableFilters[0];
       }),
 
-    actions: {
-        changeDeliverableFilter(selected) {
-            // reset page if the filter is changed
-            this.set('selectedDeliverableFilter', selected);
-            this.actions.resetPage.apply(this);
-          },
+    separatedDeliverablesByExerciseType: Ember.computed('selectedDeliverableFilter', function () {
+      const selectedDeliverableFilter = this.get('selectedDeliverableFilter');
+        return new RSVP.Promise((resolve, reject) => {
+          this.get('store').query('deliverable', {
+            filter: selectedDeliverableFilter.filter
+          }).then(deliverables => {
+            let separatedDeliverablesByExerciseType = {}
+            let categoryById = []
 
-        // changes event template in the filter
-        changeEventTemplate(eT) {
-          this.set('selectedEventTemplate', eT);
-          this.set('selectedDeliverableTemplate', '');
-          this.actions.resetPage.apply(this);
-          return false;
-        },
+            deliverables.map(deliverable => {
+              const exerciseCategory = deliverable.get('exerciseCategory');
+              const exerciseCategoryType = exerciseCategory.get('type');
+              if(!Object.keys(separatedDeliverablesByExerciseType).includes(exerciseCategoryType)) {
+                separatedDeliverablesByExerciseType[exerciseCategoryType] = [];
+                categoryById.push({ type: exerciseCategoryType, id: parseInt(exerciseCategory.get('id'))});
+              }
 
-        // load deliverables by filter
-          loadFilteredDeliverables() {
-            const filter = this.get('selectedDeliverableFilter.filter');
-
-            // filter for event template
-            if (this.get('selectedEventTemplate')) {
-              filter.eventTemplateId = this.get('selectedEventTemplate.id');
-            }
-            const pageSize = 50;
-            this.get('store').query('deliverable', {
-              filter: filter,
-              offset: pageSize * this.get('page'),
-              limit: pageSize
-            }).then(deliverables => {
-              deliverables.forEach(x => {
-                x.set('uploadedAt', x.get('uploaded') ? dateformat([x.get('lastSubmittedDate')]) : 'No');
-                x.set('deadlineFormatted', dateformat([x.get('deadline')]));
-              });
-              this.set('filteredDeliverables', [
-                ...this.get('filteredDeliverables'),
-                ...deliverables.map(x => x)
-              ]);
-              this.set('page', this.get('page') + 1);
+              separatedDeliverablesByExerciseType[exerciseCategoryType].push(deliverable);
+              return deliverable;
             });
-            return false;
-          },
 
-        changeDeliverable(deliverable) {
-          this.set('success', false);
-          this.set('error', '');
-          this.transitionToRoute("evaluator.booked.deliverable", deliverable.get('id'));
-          return false;
+            const sortedCategories = categoryById.sort(function(a, b) {
+              return a.id - b.id;
+            })
+
+            let finalDeliverablesByExerciseType = {}
+            sortedCategories.forEach(function(sorted) {
+              finalDeliverablesByExerciseType[sorted.type] = separatedDeliverablesByExerciseType[sorted.type];
+            });
+
+            resolve(finalDeliverablesByExerciseType);
+          }, err => {
+            console.error(err);
+            reject(err);
+          });
+        });
+      }),
+
+    actions: {
+      changeDeliverableFilter(selected) {
+          this.set('selectedDeliverableFilter', selected);
         },
 
-        resetPage() {
-            this.set('page', 0);
-            this.set('filteredDeliverablesSelect', []);
-            this.set('filteredDeliverables', []);
-            this.actions.loadFilteredDeliverables.apply(this);
-            return false;
-        }
+      changeDeliverable(deliverable) {
+        this.transitionToRoute("evaluator.booked.deliverable", deliverable.get('id'));
+        return false;
+      }
     }
 });

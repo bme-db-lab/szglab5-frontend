@@ -7,4 +7,8 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
   Deliverables: DS.hasMany('deliverable', { inverse: 'DeliverableTemplate' }),
   EventTemplate: DS.belongsTo('eventTemplate', { inverse: 'DeliverableTemplates' }),
+
+  exerciseCategoryType: Ember.computed('EventTemplate', function() {
+    return this.get('EventTemplate.exerciseCategoryType');
+  })
 });

@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import config from '../config/environment';
 import moment from 'moment';
-
+import { dateformat } from '../helpers/dateformat'
 
 export default DS.Model.extend({
   deadline: DS.attr('date'),
@@ -63,5 +63,17 @@ export default DS.Model.extend({
       return r;
     }
     return "";
+  }),
+
+  uploadedAt: Ember.computed('uploaded', 'formattedLastSubmittedDate', function(){
+    return this.get('uploaded') ? this.get('formattedLastSubmittedDate') : 'No'
+  }),
+
+  deadlineFormatted: Ember.computed('deadline', function() {
+    return dateformat([this.get('deadline')]);
+  }),
+
+  exerciseCategoryType: Ember.computed('DeliverableTemplate', function() {
+    return this.get('DeliverableTemplate.exerciseCategoryType');
   })
 });

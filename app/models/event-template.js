@@ -27,5 +27,9 @@ export default DS.Model.extend({
       var date = events.get('firstObject.eventDeadline');
       return date;
     });
+  }),
+
+  exerciseCategoryType: Ember.computed('ExerciseCategory', 'ExerciseCategory.type', function() {
+    return this.get('ExerciseCategory.type');
   })
 });

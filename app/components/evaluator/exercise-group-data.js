@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import dateformat from "../../helpers/dateformat"
 
 export default Ember.Component.extend({
     header: [
@@ -8,7 +7,6 @@ export default Ember.Component.extend({
         'Feltöltés ideje',
         'Határidő',
         'Feladattípus',
-        'Labor kód',
         'Beadandó'
     ],
     rowIndecies: [
@@ -17,7 +15,6 @@ export default Ember.Component.extend({
         'uploadedAt',
         'deadlineFormatted',
         'Event.ExerciseSheet.ExerciseType.shortName',
-        'DeliverableTemplate.EventTemplate.ExerciseCategory.type',
         'DeliverableTemplate.description'
     ],
 

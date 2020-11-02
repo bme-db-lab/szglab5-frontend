@@ -35,12 +35,12 @@ export default Ember.Controller.extend({
             this.set('deliverable.grading', true);
             this.get('deliverable').save().then(() => {
               this.set('success', true);
+              this.send('refreshDeliverables');
             }, (t) => {
               if (t.errors && t.errors.length > 0 && t.errors[0].title) {
                 this.set('error', t.errors[0].title);
               }
             });
-            return false;
           }
     }
 });

@@ -53,12 +53,12 @@ export default Ember.Controller.extend({
             this.set('deliverable.finalized', finalized);
             this.get('deliverable').save().then(() => {
               this.set('success', true);
+              this.send('refreshDeliverables');
             }, (t) => {
               if (t.errors && t.errors.length > 0 && t.errors[0].title) {
                 this.set('error', t.errors[0].title);
               }
             });
-            return false;
           },
 
         unbook() {
@@ -68,6 +68,7 @@ export default Ember.Controller.extend({
             this.set('deliverable.grading', false);
             this.get('deliverable').save().then(() => {
               this.set('success', true);
+              this.send('refreshDeliverables');
               this.transitionToRoute("evaluator.booked.no-deliverable");
               return false;
             }, (t) => {
@@ -75,7 +76,6 @@ export default Ember.Controller.extend({
                 this.set('error', t.errors[0].title);
               }
             });
-            return false;
           }
     }
 });

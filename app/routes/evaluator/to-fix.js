@@ -22,5 +22,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, ErrorRouteMixin, Corr
         }
       })
     });
+  },
+  actions: {
+    refreshDeliverables: function() {
+      this.refresh();
+    }
   }
 });

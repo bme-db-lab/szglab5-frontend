@@ -28,25 +28,6 @@ export default Ember.Controller.extend({
     page: 0,
     filteredDeliverables: [],
 
-    deliverableFilters: [
-        {
-          filter: {
-            isCorrector: true,
-            isFile: true,
-            finalized: false
-          },
-          value: 'Javításra vár'
-        },
-        {
-          filter: {
-            isAttached: true,
-            isFile: true,
-            finalized: true
-          },
-          value: 'Feladattípusaimhoz tartozó kijavított feladatok'
-        }
-      ],
-
     actions: {
         // changes deliverable template in the filter
         changeExerciseType(eT) {

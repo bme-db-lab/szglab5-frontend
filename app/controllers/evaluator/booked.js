@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import RSVP from 'rsvp';
 
 export default Ember.Controller.extend({
     separatedDeliverablesByExerciseType: Ember.computed('model', 'model.deliverables', function () {

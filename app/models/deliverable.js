@@ -78,7 +78,7 @@ export default DS.Model.extend({
   }),
 
   tableHighlight: Ember.computed('uploadedAt', function () {
-    const uploadedAt = moment(this.get('uploadedAt'))
+    const uploadedAt = moment(this.get('uploadedAt'), "YYYY. MM. DD. hh:mm")
     const now = moment()
     const diff = now.diff(uploadedAt, 'days')
 

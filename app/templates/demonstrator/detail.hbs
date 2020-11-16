@@ -4,10 +4,12 @@
 <a class="button no-margin-top" {{action 'generateSheet'}}>generálás</a>
 <a class="button no-margin-top no-margin-left" {{action 'generateSheetSupplementary'}}>pót generálás</a>
 
-{{#each-in (await sortedEventsByCourseCode) as |courseCode events|}}
+{{#each-in (await sortedEventsByCourseCode) as |courseCode eventsByDate|}}
     <hr/>
     <h3>{{courseCode}}</h3>
-    {{demonstrator-group-data currentEventTemplate=model events=(await events) evaluateEvent=(action 'evaluateEvent')}}
+    {{#each-in eventsByDate as |date events|}}
+      {{demonstrator-group-data currentEventTemplate=model events=(await events) evaluateEvent=(action 'evaluateEvent')}}
+    {{/each-in}}
   {{else}}
     Nincs megjeleníthető laborcsoport.
 {{/each-in}}

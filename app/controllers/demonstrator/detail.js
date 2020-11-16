@@ -16,17 +16,24 @@ export default Ember.Controller.extend({
             eventTemplateId: this.get('model.id')
           }
         }).then(events => {
-          let separatedEventsByCourseCode = {}
-          let eventDateByCourseCode = []
+          let separatedEventsByCourseCode = {};
+          let eventDateByCourseCode = [];
 
           events.map(event => {
+            let date =  event.get('date');
+            let dateString = moment(date).format("YYYY. MM. DD. hh:mm");
+
             const courseCode = event.get('CourseCode');
             if(!Object.keys(separatedEventsByCourseCode).includes(courseCode)) {
-              separatedEventsByCourseCode[courseCode] = [];
-              eventDateByCourseCode.push({ courseCode: courseCode, date: event.get('date')});
+              separatedEventsByCourseCode[courseCode] = {};
+              eventDateByCourseCode.push({ courseCode: courseCode, date: date});
             }
 
-            separatedEventsByCourseCode[courseCode].push(event);
+            if(!Object.keys(separatedEventsByCourseCode[courseCode]).includes(dateString)) {
+              separatedEventsByCourseCode[courseCode][dateString] = [];
+            }
+
+            separatedEventsByCourseCode[courseCode][dateString].push(event);
             return event;
           });
 

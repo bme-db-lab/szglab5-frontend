@@ -5,6 +5,8 @@
 <a class="button no-margin-top no-margin-left" {{action 'generateSheetSupplementary'}}>pót generálás</a>
 
 {{#each-in (await sortedEventsByCourseCode) as |courseCode events|}}
+    <hr/>
+    <h3>{{courseCode}}</h3>
     {{demonstrator-group-data currentEventTemplate=model events=(await events) evaluateEvent=(action 'evaluateEvent')}}
   {{else}}
     Nincs megjeleníthető laborcsoport.

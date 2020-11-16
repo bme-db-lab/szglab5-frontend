@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 import RSVP from 'rsvp';
 
 export default Ember.Controller.extend({
@@ -25,9 +26,9 @@ export default Ember.Controller.extend({
             promises.push(promise);
           });
           RSVP.Promise.all(promises).then(() => {
-            // sort menupoints by key
+            // sort menupoints by date
             const sorted = subMenuKeys.sort((lhs, rhs) => {
-              return lhs.event.get('date') - rhs.event.get('date');
+              return moment(lhs.event.get('date')).diff(rhs.event.get('date'))
             });
             // select the first menu that has not been graded yet.
             this.set('currentView', null);

@@ -10,6 +10,9 @@
     {{#each-in eventsByDate as |date events|}}
       {{demonstrator-group-data currentEventTemplate=model events=(await events) evaluateEvent=(action 'evaluateEvent')}}
     {{/each-in}}
-  {{else}}
-    Nincs megjeleníthető laborcsoport.
 {{/each-in}}
+
+{{#if noGroupToShow}}
+  <hr/>
+  Nincs megjeleníthető laborcsoport.
+{{/if}}

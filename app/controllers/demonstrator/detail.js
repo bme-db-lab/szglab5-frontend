@@ -7,8 +7,11 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   classNames: ['demonstrator-group'],
 
+  noGroupToShow: false,
+
   // TODO: move to models/eventTemplate.js when the Events attribute is filtered in the get call.
   sortedEventsByCourseCode: Ember.computed('model', function () {
+    this.set("noGroupToShow", false);
     return new RSVP.Promise((resolve, reject) => {
       if (this.get('model.id')) {
         this.get('store').query('event', {
@@ -47,6 +50,10 @@ export default Ember.Controller.extend({
             finalEventsByCourseCode[sorted.courseCode] = separatedEventsByCourseCode[sorted.courseCode];
           });
 
+          if(Object.keys(finalEventsByCourseCode).length === 0) {
+            this.set("noGroupToShow", true);
+          }
+
           resolve(finalEventsByCourseCode);
         }, err => {
           console.error(err);
@@ -54,6 +61,7 @@ export default Ember.Controller.extend({
         });
       }
       else {
+        this.set("noGroupToShow", true);
         resolve({});
       }
     });

@@ -23,10 +23,11 @@ export default Ember.Controller.extend({
           let eventDateByCourseCode = [];
 
           events.map(event => {
+            let attempt =  event.get('attempt');
             let date =  event.get('date');
             let dateString = moment(date).format("YYYY. MM. DD. hh:mm");
 
-            const courseCode = event.get('CourseCode');
+            const courseCode = attempt > 1 ? "Pótlás" : event.get('CourseCode');
             if(!Object.keys(separatedEventsByCourseCode).includes(courseCode)) {
               separatedEventsByCourseCode[courseCode] = {};
               eventDateByCourseCode.push({ courseCode: courseCode, date: date});

@@ -10,7 +10,7 @@ export default Ember.Component.extend({
       if (!Ember.isEmpty(files)) {
         const formData = new FormData();
         const errorMessage = data => {
-          this.sendAction('falied', data);
+          this.sendAction('failed', data);
         };
         formData.append('file', files[0]);
         this.sendAction('started');

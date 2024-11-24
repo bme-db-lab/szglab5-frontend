@@ -26,7 +26,10 @@ export default Ember.Component.extend({
             this.sendAction('success');
             event.target.value = '';
           },
-          failure: errorMessage,
+          failure: () => {
+            this.sendAction('failed');
+            event.target.value = '';
+          },
           statusCode: {
             500: errorMessage,
             404: errorMessage,

@@ -2,18 +2,19 @@
   <div class="text label">Upload {{Deliverable.DeliverableTemplate.description}}</div>
   {{file-uploader-box url=Deliverable.uploadUrl started=(action 'uploadStarted') success=(action 'uploadSuccess') failed=(action 'uploadFailed')}}
 
-  {{#if Deliverable.uploaded}}
-    {{#if success}}
+  {{#if success}}
+    {{#if Deliverable.uploaded}}
+      {{! Checking Deliverable.uploaded seems redundant, but let's stay of the safe side and avoid false confirm. }}
       <div class="success-box">
         Uploaded succesfully.
       </div>
-    {{else}}
-      {{#unless (eq error '')}}
-        <div class="error-box">
-          {{error}}
-        </div>
-      {{/unless}}
     {{/if}}
+  {{else}}
+    {{#unless (eq error '')}}
+      <div class="error-box">
+        {{error}}
+      </div>
+    {{/unless}}
   {{/if}}
 {{/if}}
 {{#if Deliverable.uploaded}}
